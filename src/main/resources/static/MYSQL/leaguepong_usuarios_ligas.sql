@@ -32,7 +32,11 @@ CREATE TABLE `usuarios_ligas` (
   KEY `ID_LIGA` (`ID_LIGA`),
   CONSTRAINT `usuarios_ligas_ibfk_1` FOREIGN KEY (`ID_USUARIO`) REFERENCES `usuarios` (`ID_USUARIO`),
   CONSTRAINT `usuarios_ligas_ibfk_2` FOREIGN KEY (`ID_LIGA`) REFERENCES `ligas` (`ID_LIGA`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+=======
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+>>>>>>> 30ae17e5541a150412b584bc6107dbec36da2484
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +45,10 @@ CREATE TABLE `usuarios_ligas` (
 
 LOCK TABLES `usuarios_ligas` WRITE;
 /*!40000 ALTER TABLE `usuarios_ligas` DISABLE KEYS */;
+<<<<<<< HEAD
 INSERT INTO `usuarios_ligas` VALUES (1,1,2,1),(2,2,2,0);
+=======
+>>>>>>> 30ae17e5541a150412b584bc6107dbec36da2484
 /*!40000 ALTER TABLE `usuarios_ligas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +61,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD
 -- Dump completed on 2022-09-06 13:34:53
+=======
+-- Dump completed on 2022-09-06 12:18:57
+>>>>>>> 30ae17e5541a150412b584bc6107dbec36da2484
