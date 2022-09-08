@@ -2,38 +2,38 @@ package com.leaguepong.entities;
 
 public class Partido {
 private int id_partido;
-private Usuario jugador_1;
-private Usuario jugador_2;
-private Usuario ganador;
+private int id_jugador_1;
+private int id_jugador_2;
+private int id_ganador;
 public int getId_partido() {
 	return id_partido;
 }
 public void setId_partido(int id_partido) {
 	this.id_partido = id_partido;
 }
-public Usuario getJugador_1() {
-	return jugador_1;
+public int getId_jugador_1() {
+	return id_jugador_1;
 }
-public void setJugador_1(Usuario jugador_1) {
-	this.jugador_1 = jugador_1;
+public void setId_jugador_1(int id_jugador_1) {
+	this.id_jugador_1 = id_jugador_1;
 }
-public Usuario getJugador_2() {
-	return jugador_2;
+public int getId_jugador_2() {
+	return id_jugador_2;
 }
-public void setJugador_2(Usuario jugador_2) {
-	this.jugador_2 = jugador_2;
+public void setId_jugador_2(int id_jugador_2) {
+	this.id_jugador_2 = id_jugador_2;
 }
-public Usuario getGanador() {
-	return ganador;
+public int getId_ganador() {
+	return id_ganador;
 }
-public void setGanador(Usuario ganador) {
-	this.ganador = ganador;
+public void setId_ganador(int id_ganador) {
+	this.id_ganador = id_ganador;
 }
-public Partido(int id_partido, Usuario jugador_1, Usuario jugador_2, Usuario ganador) {
+public Partido(int id_partido, int id_jugador_1, int id_jugador_2, int id_ganador) {
 	super();
 	this.id_partido = id_partido;
-	this.jugador_1 = jugador_1;
-	this.jugador_2 = jugador_2;
-	this.ganador = ganador;
+	this.id_jugador_1 = id_jugador_1;
+	this.id_jugador_2 = id_jugador_2;
+	this.id_ganador = id_ganador;
 }
 }
