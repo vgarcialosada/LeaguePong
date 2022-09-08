@@ -1,12 +1,13 @@
 package com.leaguepong.entities;
 
 public class Liga {
-private int id_liga;
+private long id_liga;
+private String nombre;
 private String password;
 private String reglas;
 private String ubicacion;
 private int numero_jugadores;
-public Liga(int id_liga, String password, String reglas, String ubicacion, int numero_jugadores) {
+public Liga(long id_liga, String password, String reglas, String ubicacion, int numero_jugadores) {
 	super();
 	this.id_liga = id_liga;
 	this.password = password;
@@ -14,12 +15,28 @@ public Liga(int id_liga, String password, String reglas, String ubicacion, int n
 	this.ubicacion = ubicacion;
 	this.numero_jugadores = numero_jugadores;
 }
-public int getId_liga() {
+
+public Liga() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+public long getId_liga() {
 	return id_liga;
 }
-public void setId_liga(int id_liga) {
-	this.id_liga = id_liga;
+
+public void setId_liga(long l) {
+	this.id_liga =  l;
 }
+
+public String getNombre() {
+	return nombre;
+}
+
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
+
 public String getPassword() {
 	return password;
 }
