@@ -52,5 +52,9 @@ public class Usuario {
 		this.localidad = localidad;
 		this.nivel = nivel;
 	}
+	public Usuario() {
+		// TODO Auto-generated constructor stub
+	}
+	
 
 }

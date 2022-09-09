@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Crear usuario</title>
 </head>
-<form>
 	<body>
 		<h1>Form</h1>
 
@@ -20,7 +19,7 @@
 							de Usuario</h2> </span> <input type="text" class="form-control"
 						aria-label="Sizing example input"
 						aria-describedby="inputGroup-sizing-default"
-						th:field="*{username}" />
+						th:field="*{nombre_usuario}" />
 				</div>
 
 				<div class="input-group mb-3">
@@ -43,18 +42,9 @@
 					<input type="text" class="form-control"
 						aria-label="Sizing example input"
 						aria-describedby="inputGroup-sizing-default"
-						th:field="*{ubicacion}" />
+						th:field="*{localidad}" />
 				</div>
-				<h2>Nivel</h2>
-
-				<label for="nivel">Selecciona tu nivel actual :</label>
-
-				<input  name="nivel" id="nivel" th:field="*{nivel}">
-					<option value="0">Principiante (0)</option>
-					<option value="1">Amateur (1)</option>
-					<option value="2">Avanzado (2)</option>
-					<option value="3">Profesional (3)</option>
-				</select>
+				
 				<p>
 					<input type="submit" value="Submit" /> <input type="reset"
 						value="Reset" />
