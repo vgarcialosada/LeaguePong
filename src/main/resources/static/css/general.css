@@ -9,3 +9,12 @@ header {
   body {
     background-color: rgb(197, 195, 195);
   }
+
+  
+  .button1 {
+    background-color: #e05356;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+
+  }
