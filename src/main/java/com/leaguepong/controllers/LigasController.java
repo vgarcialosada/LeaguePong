@@ -7,10 +7,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -81,7 +83,7 @@ public class LigasController {
 
 	@PostMapping("{id}/crear-liga")
 	public ObjectNode createLeague(@PathVariable long id, @RequestBody(required = false) Liga liga){
-		System.out.println(id + " " + liga.toString());
+
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		
@@ -102,5 +104,22 @@ public class LigasController {
 
 		return objectNode;
 	}
+	
+	@DeleteMapping("{id_liga}/eliminar-liga")
+	public ObjectNode deleteLeague(@PathVariable long id_liga){
+	
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode objectNode = mapper.createObjectNode();
+		
+		String queryDeleteLeague = "delete from ligas where id_liga = "+id_liga+";";
+		try {
+			jdbcTemplate.execute(queryDeleteLeague);
+			objectNode.put("message", "Liga eliminada correctamente");
+		} catch (Exception e) {
+			objectNode.put("message", "Error al eliminar liga");
+			objectNode.put("error", e.toString());
+		}
 
+		return objectNode;
+	}
 }
