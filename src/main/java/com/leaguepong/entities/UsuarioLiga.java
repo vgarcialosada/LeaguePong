@@ -1,24 +1,24 @@
 package com.leaguepong.entities;
 
 public class UsuarioLiga extends Usuario{
-	private int puntos;
-	private int partidosJugados;
+	private long puntos;
+	private long partidosJugados;
 
-	public int getPuntos() {
+	public long getPuntos() {
 		return puntos;
 	}
 
 
-	public int getPartidosJugados() {
+	public long getPartidosJugados() {
 		return partidosJugados;
 	}
 
 
-	public void setPuntos(int puntos) {
+	public void setPuntos(long puntos) {
 		this.puntos = puntos;
 	}
 
-	public void setPartidosJugados(int partidosJugados) {
+	public void setPartidosJugados(long partidosJugados) {
 		this.partidosJugados = partidosJugados;
 	}
 
