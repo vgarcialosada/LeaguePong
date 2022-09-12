@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crear usuario</title>
+</head>
+	<body>
+		<h1>Form</h1>
+
+
+		<form action="#" th:action="@{/register}" th:object="${usuario}"
+			method="post">
+			<body>
+				<h1>Crear Usuario</h1>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default"><h2>Nombre
+							de Usuario</h2> </span> <input type="text" class="form-control"
+						aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-default"
+						th:field="*{nombre_usuario}" />
+				</div>
+
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default"><h2>Contraseña</h2></span>
+					<input type="password" class="form-control"
+						aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-default"
+						th:field="*{password}" />
+				</div>
+
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default"><h2>E-mail</h2></span>
+					<input type="text" class="form-control"
+						aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-default" th:field="*{mail}" />
+				</div>
+
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default"><h2>Ubicación</h2></span>
+					<input type="text" class="form-control"
+						aria-label="Sizing example input"
+						aria-describedby="inputGroup-sizing-default"
+						th:field="*{localidad}" />
+				</div>
+				
+				<h2>Nivel</h2>
+
+    <label for="nivel">Selecciona tu nivel actual :</label>
+
+    <select name="level" id="level" th:field="*{nivel}">
+      <option value="0">Principiante (0)</option>
+      <option value="1">Amateur (1)</option>
+      <option value="2">Avanzado (2)</option>
+      <option value="3">Profesional (3)</option>
+    </select>
+				
+				<p>
+					<input type="submit" value="Submit" /> <input type="reset"
+						value="Reset" />
+				</p>
+		</form>
+
+	</body>
+</html>
