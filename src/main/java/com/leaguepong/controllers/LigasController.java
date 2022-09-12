@@ -25,6 +25,9 @@ public class LigasController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	/**Selecciona todas las ligas que existen con todas sus propiedades. 
+	 * Tambien se puede filtrar por nombre y ubicacion para buscar luego desde el front.
+	 */
 	@GetMapping("/todas-ligas")
 	public List<Liga> allLeagues(@RequestParam(required = false) String name,
 			@RequestParam(required = false) String location) {
@@ -60,6 +63,8 @@ public class LigasController {
 		return ligaArr;
 	}
 
+	//Selecciona todas las ligas en las que un usuario esta participando con todas sus propiedades. 
+	 
 	@GetMapping("{id}/mis-ligas")
 	public List<Liga> myLeagues(@PathVariable long id) {
 		final String QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
@@ -83,6 +88,9 @@ public class LigasController {
 		return ligaArr;
 	}
 
+	/* Crea una liga a partir de un objeto Liga pasado desde el front
+	 * Añade el usuario logeado a la liga y lo hace admin
+	*/
 	@PostMapping("{id}/crear-liga")
 	public ObjectNode createLeague(@PathVariable long id, @RequestBody Liga liga){
 
@@ -107,9 +115,10 @@ public class LigasController {
 		return objectNode;
 	}
 	
-	@DeleteMapping("{id_liga}/eliminar-liga")
+	//elimina todos los registros de una liga, partidos, usuarios y la liga
+	@DeleteMapping("eliminar-liga/{id_liga}")
 	public ObjectNode deleteLeague(@PathVariable long id_liga){
-		System.out.println(id_liga);
+
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		
@@ -120,10 +129,8 @@ public class LigasController {
 		try {
 			jdbcTemplate.execute(queryDeleteMatchesOfLeague);
 			jdbcTemplate.execute(queryDeleteUsersOfLeague);
-			List<Map<String, Object>> test = jdbcTemplate.queryForList(queryDeleteLeague);
-			for (Map<String, Object> map : test) {
-				System.out.println(map);
-			}
+			jdbcTemplate.execute(queryDeleteLeague);
+			
 			objectNode.put("message", "Liga eliminada correctamente");
 		} catch (Exception e) {
 			objectNode.put("message", "Error al eliminar liga");
