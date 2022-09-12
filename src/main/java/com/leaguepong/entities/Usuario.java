@@ -1,6 +1,7 @@
 package com.leaguepong.entities;
 
 public class Usuario {
+	
 	private int id_usuario;
 	private String nombre_usuario;
 	private String password;
@@ -52,5 +53,15 @@ public class Usuario {
 		this.localidad = localidad;
 		this.nivel = nivel;
 	}
+	public Usuario() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public String toString() {
+		return "Usuario [id_usuario=" + id_usuario + ", nombre_usuario=" + nombre_usuario + ", password=" + password
+				+ ", mail=" + mail + ", localidad=" + localidad + ", nivel=" + nivel + "]";
+	}
+	
 
 }
