@@ -45,6 +45,17 @@
 						th:field="*{localidad}" />
 				</div>
 				
+				<h2>Nivel</h2>
+
+    <label for="nivel">Selecciona tu nivel actual :</label>
+
+    <select name="level" id="level" th:field="*{nivel}">
+      <option value="0">Principiante (0)</option>
+      <option value="1">Amateur (1)</option>
+      <option value="2">Avanzado (2)</option>
+      <option value="3">Profesional (3)</option>
+    </select>
+				
 				<p>
 					<input type="submit" value="Submit" /> <input type="reset"
 						value="Reset" />
