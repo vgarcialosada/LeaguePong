@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,8 @@ import com.leaguepong.entities.Liga;
 public class LigasController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	@CrossOrigin(origins="*", maxAge = 3600)
 
 	@GetMapping("/todas-ligas")
 	public List<Liga> allLeagues(@RequestParam(required = false) String name,
@@ -59,8 +62,10 @@ public class LigasController {
 		}
 		return ligaArr;
 	}
-
+	@CrossOrigin(origins="*", maxAge = 3600)
+	
 	@GetMapping("{id}/mis-ligas")
+	
 	public List<Liga> myLeagues(@PathVariable long id) {
 		final String QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES from leaguepong.ligas inner join leaguepong.usuarios_ligas on ligas.ID_LIGA = usuarios_ligas.ID_LIGA where ID_USUARIO ="
 				+ id + "; ";
