@@ -87,7 +87,7 @@ public class LigasController {
 		}
 		return ligaArr;
 	}
-	@CrossOrigin(origins="*", maxAge = 3600)
+
 	@PostMapping("{id}/crear-liga")
 	public ObjectNode createLeague(@PathVariable long id, @RequestBody Liga liga){
 
@@ -111,7 +111,7 @@ public class LigasController {
 
 		return objectNode;
 	}
-	@CrossOrigin(origins="*", maxAge = 3600)
+	
 	@DeleteMapping("{id_liga}/eliminar-liga")
 	public ObjectNode deleteLeague(@PathVariable long id_liga){
 
