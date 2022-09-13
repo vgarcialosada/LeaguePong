@@ -21,10 +21,10 @@ import ch.qos.logback.classic.Logger;
 public class RegisterController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@GetMapping("/register")
 	public String registerForm(Model model) {
-		model.addAttribute("usuarios", new Usuario());
+		model.addAttribute("usuario", new Usuario());
 		return "create_user";
 	}
 
@@ -32,7 +32,7 @@ public class RegisterController {
 	public String registerSubmit(@ModelAttribute Usuario usuario, Model model) {
 		Logger logger = (Logger) LoggerFactory.getLogger(RegisterController.class);
 		logger.info(usuario.toString());
-		//createUserBDD(usuario);
+		createUserBDD(usuario);
 		model.addAttribute("usuario", usuario);
 		return "userResult";
 	}
@@ -42,27 +42,26 @@ public class RegisterController {
 		return result;
 	}
 
-//	@PostMapping("/crear-usuario")
-//	public ObjectNode createUserBDD(@RequestBody(required = false) Usuario usuario) {
-//		int idNewUser = (int) selectLastUserId();
-//		usuario.setId_usuario(idNewUser);
-//		ObjectMapper mapper = new ObjectMapper();
-//		ObjectNode objectNode = mapper.createObjectNode();
-//		String pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
-//		String queryCreateUser = "insert into usuarios set ID_USUARIO= \""+usuario.getId_usuario() + "\", NOMBRE = \"" + usuario.getNombre_usuario() + "\", PASSWORD = \""
-//				+ pwdEncriptada + "\", REGLAS= \"" + usuario.getMail() + "\", UBICACION = \"" + usuario.getLocalidad()
-//				+ "\", NUMERO_JUGADORES=" + usuario.getNivel()+ "\", ENABLED= 1, ROLE= 1;";
-//
-//		System.out.println(queryCreateUser);
-//		try {
-//			jdbcTemplate.execute(queryCreateUser);
-//			objectNode.put("message", "Usuario creado correctamente");
-//		} catch (Exception e) {
-//			objectNode.put("message", "Error al crear usuario");
-//			objectNode.put("error", e.toString());
-//		}
-//
-//		return objectNode;
-//	}
+	@PostMapping("/crear-usuario")
+	public ObjectNode createUserBDD(@RequestBody(required = false) Usuario usuario) {
+		int idNewUser = (int) selectLastUserId() + 1;
+		usuario.setId_usuario(idNewUser);
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode objectNode = mapper.createObjectNode();
+		// String
+		// pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
+		String queryCreateUser = "insert into usuarios set ID_USUARIO= \"" + usuario.getId_usuario() + "\", NOMBRE_USUARIO = \""
+				+ usuario.getNombre_usuario() + "\", PASSWORD = \"" + usuario.getPassword() + "\", MAIL= \""
+				+ usuario.getMail() + "\", LOCALIDAD = \"" + usuario.getLocalidad() + "\", NIVEL=" + usuario.getNivel();
+		try {	
+			jdbcTemplate.execute(queryCreateUser);
+			objectNode.put("message", "Usuario creado correctamente");
+		} catch (Exception e) {
+			objectNode.put("message", "Error al crear usuario");
+			objectNode.put("error", e.toString());
+		}
+
+		return objectNode;
+	}	
 
 }

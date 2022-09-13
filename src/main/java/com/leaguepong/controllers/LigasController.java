@@ -95,8 +95,8 @@ public class LigasController {
 	@PostMapping("{id}/crear-liga")
 	public ObjectNode createLeague(@PathVariable long id, @RequestBody Liga liga){
 
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode objectNode = mapper.createObjectNode();
+			ObjectMapper mapper = new ObjectMapper();
+			ObjectNode objectNode = mapper.createObjectNode();
 		
 		String queryCreateLeague = "insert into ligas set NOMBRE = \"" + liga.getNombre() + "\", PASSWORD = \""
 				+ liga.getPassword() + "\", REGLAS= \"" + liga.getReglas() + "\", UBICACION = \""
