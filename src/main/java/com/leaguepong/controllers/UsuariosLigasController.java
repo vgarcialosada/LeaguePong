@@ -6,10 +6,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,7 +22,8 @@ import com.leaguepong.entities.UsuarioLiga;
 public class UsuariosLigasController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
+	
+	@CrossOrigin(origins="*", maxAge = 3600)
 	//trae todos los usuarios de una liga en orden segun sus puntos, los partidos jugados y su id
 	@GetMapping("usuarios/{id_liga}")
 	public List<UsuarioLiga> usersLeague(@PathVariable long id_liga) {
@@ -44,7 +47,8 @@ public class UsuariosLigasController {
 		return usuariosLigaArr;
 	}
 
-//	meter un usuario a la liga
+	@CrossOrigin(origins="*", maxAge = 3600)
+//	meter un usuario a la liga y crear sus partidos contra todos los que ya esten dentro
 	@PostMapping("add-usuario/{id_liga}/{id}")
 	public ObjectNode addUserToLeague(@PathVariable Long id_liga,@PathVariable Long id ) {
 		ObjectMapper mapper = new ObjectMapper();
@@ -74,6 +78,7 @@ public class UsuariosLigasController {
 		return objectNode;
 	}
 	
+	@CrossOrigin(origins="*", maxAge = 3600)
 //	eliminar un usuario de la liga
 	@DeleteMapping("delete-usuario/{id_liga}/{id}")
 	public ObjectNode deleteUserOfLeague(@PathVariable Long id,@PathVariable Long id_liga ) {
@@ -91,6 +96,36 @@ public class UsuariosLigasController {
 			objectNode.put("message", "Usuario eliminado correctamente");
 		} catch (Exception e) {
 			objectNode.put("message", "Error al eliminar usuario de la liga");
+			objectNode.put("error", e.toString());
+		}
+	
+		return objectNode;
+	}
+	
+//	ascender o descender a un usario a admin en funcion de si ya lo es o no
+	@CrossOrigin(origins="*", maxAge = 3600)
+	@PutMapping("usuario-admin/{id_liga}/{id}")
+	public ObjectNode makeAdmin (@PathVariable Long id,@PathVariable Long id_liga ) {
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode objectNode = mapper.createObjectNode();
+
+		final String queryMakeAdmin="update usuarios_ligas set  is_admin = true where id_usuario = "+id+" and id_liga = "+id_liga+";";
+		final String queryDescendFromAdmin="update usuarios_ligas set  is_admin = false where id_usuario = "+id+" and id_liga = "+id_liga+";";
+		final String isAdmin="select is_admin from usuarios_ligas  where id_usuario = "+id+" and id_liga = "+id_liga+";";
+		
+		try {	
+			Map<String, Object> result = jdbcTemplate.queryForMap(isAdmin);
+			if(result.get("IS_ADMIN").toString()=="false") {
+				jdbcTemplate.execute(queryMakeAdmin);
+				objectNode.put("message", "Usuario ascendido correctamente");
+			}
+			else {
+				jdbcTemplate.execute(queryDescendFromAdmin);
+				objectNode.put("message", "Usuario descendido correctamente");
+			}
+			
+		} catch (Exception e) {
+			objectNode.put("message", "Error al hacer admisitrador de la liga");
 			objectNode.put("error", e.toString());
 		}
 	
