@@ -102,33 +102,5 @@ public class UsuariosLigasController {
 		return objectNode;
 	}
 	
-//	ascender o descender a un usario a admin en funcion de si ya lo es o no
-	@CrossOrigin(origins="*", maxAge = 3600)
-	@PutMapping("usuario-admin/{id_liga}/{id}")
-	public ObjectNode makeAdmin (@PathVariable Long id,@PathVariable Long id_liga ) {
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode objectNode = mapper.createObjectNode();
-
-		final String queryMakeAdmin="update usuarios_ligas set  is_admin = true where id_usuario = "+id+" and id_liga = "+id_liga+";";
-		final String queryDescendFromAdmin="update usuarios_ligas set  is_admin = false where id_usuario = "+id+" and id_liga = "+id_liga+";";
-		final String isAdmin="select is_admin from usuarios_ligas  where id_usuario = "+id+" and id_liga = "+id_liga+";";
-		
-		try {	
-			Map<String, Object> result = jdbcTemplate.queryForMap(isAdmin);
-			if(result.get("IS_ADMIN").toString()=="false") {
-				jdbcTemplate.execute(queryMakeAdmin);
-				objectNode.put("message", "Usuario ascendido correctamente");
-			}
-			else {
-				jdbcTemplate.execute(queryDescendFromAdmin);
-				objectNode.put("message", "Usuario descendido correctamente");
-			}
-			
-		} catch (Exception e) {
-			objectNode.put("message", "Error al hacer admisitrador de la liga");
-			objectNode.put("error", e.toString());
-		}
-	
-		return objectNode;
-	}
+ 
 }
