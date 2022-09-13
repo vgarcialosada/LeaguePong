@@ -51,9 +51,13 @@ public class UsuariosLigasController {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		System.out.println(id_liga);
+		
+		final String knowUsersLeague="select id_usuario from usuarios_ligas where id_liga = 2;";
 		final String queryAddUser="insert into usuarios_ligas set id_usuario = "+id+", id_liga="+id_liga+", is_admin = false;";
 		
 		try {
+			List<Map<String, Object>> results = jdbcTemplate.queryForList(knowUsersLeague);
+			System.out.println(results);
 			jdbcTemplate.execute(queryAddUser);
 
 			objectNode.put("message", "Usuario añadido correctamente");
