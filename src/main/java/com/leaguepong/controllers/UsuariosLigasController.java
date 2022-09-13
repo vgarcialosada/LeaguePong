@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,13 +46,12 @@ public class UsuariosLigasController {
 	}
 
 //	meter un usuario a la liga
-	@PostMapping("{id}/add-usuario/{id_liga}")
-	public ObjectNode AddUserToLeague(@PathVariable Long id,@PathVariable Long id_liga ) {
+	@PostMapping("add-usuario/{id_liga}/{id}")
+	public ObjectNode addUserToLeague(@PathVariable Long id_liga,@PathVariable Long id ) {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		System.out.println(id_liga);
 		final String queryAddUser="insert into usuarios_ligas set id_usuario = "+id+", id_liga="+id_liga+", is_admin = false;";
-		
 		
 		try {
 			jdbcTemplate.execute(queryAddUser);
@@ -65,24 +65,26 @@ public class UsuariosLigasController {
 		return objectNode;
 	}
 	
-//	meter un usuario a la liga
-	@PostMapping("{id}/add-usuario/{id_liga}")
-	public ObjectNode AddUserToLeague(@PathVariable Long id,@PathVariable Long id_liga ) {
+//	eliminar un usuario de la liga
+	@DeleteMapping("delete-usuario/{id_liga}/{id}")
+	public ObjectNode deleteUserOfLeague(@PathVariable Long id,@PathVariable Long id_liga ) {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
-		System.out.println(id_liga);
-		final String queryAddUser="insert into usuarios_ligas set id_usuario = "+id+", id_liga="+id_liga+", is_admin = false;";
-		
+
+		final String queryDeleteMatchesOfUser="delete from partidos where id_jugador_1 = "+id+" or id_jugador_2 = "+id+" and id_liga = "+id_liga+";";
+		final String queryDeleteUserFromLeague="delete from usuarios_ligas where id_usuario = "+id+" and id_liga = "+id_liga+";";
 		
 		try {
-			jdbcTemplate.execute(queryAddUser);
+			jdbcTemplate.execute(queryDeleteMatchesOfUser);
 
-			objectNode.put("message", "Usuario añadido correctamente");
+			jdbcTemplate.execute(queryDeleteUserFromLeague);
+
+			objectNode.put("message", "Usuario eliminado correctamente");
 		} catch (Exception e) {
-			objectNode.put("message", "Error al unirte a la liga");
+			objectNode.put("message", "Error al eliminar usuario de la liga");
 			objectNode.put("error", e.toString());
 		}
-
+	
 		return objectNode;
 	}
 }
