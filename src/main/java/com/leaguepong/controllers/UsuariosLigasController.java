@@ -37,7 +37,6 @@ public class UsuariosLigasController {
 		for(Map<String, Object> usuario : results) {
 			UsuarioLiga usuarioLiga = new UsuarioLiga();
 			usuarioLiga.setNombre_usuario((String) usuario.get("NOMBRE"));
-//			usuarioLiga.setId_usuario((long) usuario.get("ID_USUARIO"));
 			usuarioLiga.setPuntos((long) usuario.get("PUNTOS"));
 			usuarioLiga.setPartidosJugados((long) usuario.get("PARTIDOS_JUGADOS"));
 			usuariosLigaArr.add(usuarioLiga);
