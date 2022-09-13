@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +26,8 @@ public class LigasController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	/**Selecciona todas las ligas que existen con todas sus propiedades. 
-	 * Tambien se puede filtrar por nombre y ubicacion para buscar luego desde el front.
-	 */
+	@CrossOrigin(origins="*", maxAge = 3600)
+
 	@GetMapping("/todas-ligas")
 	public List<Liga> allLeagues(@RequestParam(required = false) String name,
 			@RequestParam(required = false) String location) {
@@ -62,10 +62,10 @@ public class LigasController {
 		}
 		return ligaArr;
 	}
-
-	//Selecciona todas las ligas en las que un usuario esta participando con todas sus propiedades. 
-	 
+	@CrossOrigin(origins="*", maxAge = 3600)
+	
 	@GetMapping("{id}/mis-ligas")
+	
 	public List<Liga> myLeagues(@PathVariable long id) {
 		final String QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
 				+" from leaguepong.ligas inner join leaguepong.usuarios_ligas "
