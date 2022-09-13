@@ -91,6 +91,7 @@ public class LigasController {
 	/* Crea una liga a partir de un objeto Liga pasado desde el front
 	 * Añade el usuario logeado a la liga y lo hace admin
 	*/
+	@CrossOrigin(origins="*", maxAge = 3600)
 	@PostMapping("{id}/crear-liga")
 	public ObjectNode createLeague(@PathVariable long id, @RequestBody Liga liga){
 
@@ -116,6 +117,7 @@ public class LigasController {
 	}
 	
 	//elimina todos los registros de una liga, partidos, usuarios y la liga
+	@CrossOrigin(origins="*", maxAge = 3600)
 	@DeleteMapping("eliminar-liga/{id_liga}")
 	public ObjectNode deleteLeague(@PathVariable long id_liga){
 
