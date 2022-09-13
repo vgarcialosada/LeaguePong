@@ -28,7 +28,6 @@ public class UsuarioController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	
 	//get datos usuario
 	@GetMapping("/{id}/usuario")
 	public List<Usuario> getUsuario(@PathVariable int id) {
@@ -52,7 +51,6 @@ public class UsuarioController {
 	@PostMapping("/{id}/update_usuario")
 	public ObjectNode updateUser(@PathVariable int id, @ModelAttribute Usuario usuario, Model model) {
 		String QUERYupdateUser;	
-		
 		QUERYupdateUser = "";
 		if(usuario!=null) {
 			QUERYupdateUser+="update LEAGUEPONG.USUARIOS set ";	
