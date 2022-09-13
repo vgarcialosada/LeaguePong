@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perfil</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/profile.css">
-    <link rel="stylesheet" href="../css/general.css">
-</head>
-<header><h1>Perfil</h1></header>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/profile.css" />
+    <link rel="stylesheet" href="../css/general.css" />
+  </head>
+  <header><h1>Perfil</h1></header>
+  <body>
+    <br>
+    <div class="profile_image">
+        <img src="../img/trial_img.jpg" height="100" width="100"/>
+        <br>
+        <br>
+        <button class="button1">Subir imagen</button>
+     </div>
 
-    <p>
-        <img src="">
-        <br>
-        <br>
-        <button>Subir imagen</button>
+    <div class="container">
 
-        <h2>Nombre</h2>
-        <label for="customRange1" class="form-label">mi nombre</label>
-        <h2>Email</h2>
-        <label for="customRange1" class="form-label">mi e-mail</label>
-        <h2>Ubicación</h2>
-        <label for="customRange1" class="form-label">mi ubicación</label>
-        <h2>Nivel</h2>
-        <label for="customRange1" class="form-label">mi nivel</label>
-        <br>
-        <br>
-        <button>Editar Perfil</button>
-        <br>
-        <br>
-        <button type="button" class="btn btn-primary btn-lg">Cambiar Contraseña</button>
-        <br>
-        <br>
-        <button type="button" class="btn btn-primary btn-lg">Volver</button>
-
-    </p>
-    
-</body>
+      <h2>Nombre</h2>
+      <label for="customRange1" class="form-label">mi nombre</label>
+      <h2>Email</h2>
+      <label for="customRange1" class="form-label">mi e-mail</label>
+      <h2>Ubicación</h2>
+      <label for="customRange1" class="form-label">mi ubicación</label>
+      <h2>Nivel</h2>
+      <label for="customRange1" class="form-label">mi nivel</label>
+      <br />
+      <br />
+      <button class="btn btn-secondary btn-sm">Editar Perfil</button>
+      <br />
+      <a href="../html/change_password.html" onclick=""><button type="button" class="btn btn-secondary btn-sm">
+        Cambiar Contraseña
+      </button>
+    </a>
+      <br />
+      <a href="../html/menu.html" onclick="">
+      <button class="btn btn-secondary btn-sm">Volver</button>
+    </a>
+    </div>
+  </body>
 </html>
