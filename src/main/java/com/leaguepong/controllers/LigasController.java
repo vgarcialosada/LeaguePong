@@ -67,8 +67,10 @@ public class LigasController {
 	@GetMapping("{id}/mis-ligas")
 	
 	public List<Liga> myLeagues(@PathVariable long id) {
-		final String QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES from leaguepong.ligas inner join leaguepong.usuarios_ligas on ligas.ID_LIGA = usuarios_ligas.ID_LIGA where ID_USUARIO ="
-				+ id + "; ";
+		final String QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
+				+" from leaguepong.ligas inner join leaguepong.usuarios_ligas "
+				+"on ligas.ID_LIGA = usuarios_ligas.ID_LIGA where ID_USUARIO ="+ id + "; ";
+		
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		List<Liga> ligaArr = new ArrayList<Liga>();
 
@@ -86,8 +88,11 @@ public class LigasController {
 		return ligaArr;
 	}
 
+	/* Crea una liga a partir de un objeto Liga pasado desde el front
+	 * Añade el usuario logeado a la liga y lo hace admin
+	*/
 	@PostMapping("{id}/crear-liga")
-	public ObjectNode createLeague(@PathVariable long id, @RequestBody(required = false) Liga liga){
+	public ObjectNode createLeague(@PathVariable long id, @RequestBody Liga liga){
 
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
@@ -110,15 +115,22 @@ public class LigasController {
 		return objectNode;
 	}
 	
-	@DeleteMapping("{id_liga}/eliminar-liga")
+	//elimina todos los registros de una liga, partidos, usuarios y la liga
+	@DeleteMapping("eliminar-liga/{id_liga}")
 	public ObjectNode deleteLeague(@PathVariable long id_liga){
-	
+
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		
+		
+		String queryDeleteMatchesOfLeague = "delete from partidos where id_liga = "+id_liga+";";
+		String queryDeleteUsersOfLeague = "delete from usuarios_ligas where id_liga = "+id_liga+";";
 		String queryDeleteLeague = "delete from ligas where id_liga = "+id_liga+";";
 		try {
+			jdbcTemplate.execute(queryDeleteMatchesOfLeague);
+			jdbcTemplate.execute(queryDeleteUsersOfLeague);
 			jdbcTemplate.execute(queryDeleteLeague);
+			
 			objectNode.put("message", "Liga eliminada correctamente");
 		} catch (Exception e) {
 			objectNode.put("message", "Error al eliminar liga");
