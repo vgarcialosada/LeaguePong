@@ -42,14 +42,16 @@ public class RegisterController {
 		return result;
 	}
 
+	
+	//funcion register
 	@PostMapping("/crear-usuario")
 	public ObjectNode createUserBDD(@RequestBody(required = false) Usuario usuario) {
-		int idNewUser = (int) selectLastUserId() + 1;
-		usuario.setId_usuario(idNewUser);
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
-		// String
-		// pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
+		if (!userAlreadyExists(usuario.getNombre_usuario(), usuario.getMail())) {
+		int idNewUser = (int) selectLastUserId() + 1;
+		usuario.setId_usuario(idNewUser);
+		// String pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
 		String queryCreateUser = "insert into usuarios set ID_USUARIO= \"" + usuario.getId_usuario() + "\", NOMBRE_USUARIO = \""
 				+ usuario.getNombre_usuario() + "\", PASSWORD = \"" + usuario.getPassword() + "\", MAIL= \""
 				+ usuario.getMail() + "\", LOCALIDAD = \"" + usuario.getLocalidad() + "\", NIVEL=" + usuario.getNivel();
@@ -60,8 +62,18 @@ public class RegisterController {
 			objectNode.put("message", "Error al crear usuario");
 			objectNode.put("error", e.toString());
 		}
-
+		return objectNode;}
+		objectNode.put("message", "Usuario o mail ya existen");
 		return objectNode;
 	}	
+
+	
+	//comprobacion si username o mail ya estan en bdd
+	public boolean userAlreadyExists(String username, String mail){
+		String findUser = "select id_usuario from usuarios where NOMBRE_USUARIO = ? or mail = ?";
+		 int count = jdbcTemplate.queryForObject(findUser, new Object[] { username, mail }, Integer.class);
+		    return count > 0;
+
+	}
 
 }

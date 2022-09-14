@@ -1,9 +1,11 @@
 
-//comprobar contraseñas
-function ansValidation(ev) {
-    var passValue = document.getElementById("password").value
-    var confpassValue = document.getElementById("confirm_password").value
-   if(passValue !== confpassValue) {
-       window.alert("Passwords do not match!")
-    }
-}
+
+var users = JSON.parse(localStorage.getItem('	')) || [];
+var userData = [{Username:document.getElementById("UserName").value},
+{Email:document.getElementById("EmailAddress").value},
+{Password:document.getElementById("PassWord").value},
+{Address:document.getElementById("Address1").value},
+{Phone:document.getElementById("PhoneNumber").value}];
+
+users.push(userData);
+localStorage.setItem('Users', JSON.stringify(users));
