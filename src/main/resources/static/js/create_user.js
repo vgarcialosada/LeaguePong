@@ -1,11 +1,21 @@
+//mail valid
 
 
-var users = JSON.parse(localStorage.getItem('	')) || [];
-var userData = [{Username:document.getElementById("UserName").value},
-{Email:document.getElementById("EmailAddress").value},
-{Password:document.getElementById("PassWord").value},
-{Address:document.getElementById("Address1").value},
-{Phone:document.getElementById("PhoneNumber").value}];
+function passCheck() {
+  var password = document.getElementById('password');
+  var vpassword = document.getElementById('confirm_password');
 
-users.push(userData);
-localStorage.setItem('Users', JSON.stringify(users));
+  if (password.value != vpassword.value) {
+    document.getElementById("submitFormRegister").disabled = true;
+    document.getElementById("failed_register_pwd").style.display="inline"
+  }
+  else {
+    document.getElementById("submitFormRegister").disabled = false;
+        document.getElementById("failed_register_pwd").style.display="none"
+
+  }
+}
+
+function returnToPreviousPage() {
+    window.history.back();
+}

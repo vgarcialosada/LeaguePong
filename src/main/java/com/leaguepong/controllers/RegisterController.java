@@ -30,11 +30,44 @@ public class RegisterController {
 
 	@PostMapping("/register_user")
 	public String registerSubmit(@ModelAttribute Usuario usuario, Model model) {
+		Usuario newUser = usuario;
 		Logger logger = (Logger) LoggerFactory.getLogger(RegisterController.class);
-		logger.info(usuario.toString());
-		createUserBDD(usuario);
-		model.addAttribute("usuario", usuario);
-		return "userResult";
+		logger.info(newUser.toString());
+		if (createUserBDD(newUser)) {
+			model.addAttribute("usuario", usuario);
+			return "userResult";
+		} else {
+			return "create_user_username_error";
+		}
+
+	}
+
+	public boolean createUserBDD(@RequestBody(required = false) Usuario usuario) {
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode objectNode = mapper.createObjectNode();
+		if (!userAlreadyExists(usuario.getNombre_usuario(), usuario.getMail())) {
+			int idNewUser = (int) selectLastUserId() + 1;
+			usuario.setId_usuario(idNewUser);
+			// String
+			// pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
+			String queryCreateUser = "insert into usuarios set ID_USUARIO= \"" + usuario.getId_usuario()
+					+ "\", NOMBRE_USUARIO = \"" + usuario.getNombre_usuario() + "\", PASSWORD = \""
+					+ usuario.getPassword() + "\", MAIL= \"" + usuario.getMail() + "\", LOCALIDAD = \""
+					+ usuario.getLocalidad() + "\", NIVEL=" + usuario.getNivel();
+			try {
+				jdbcTemplate.execute(queryCreateUser);
+				objectNode.put("message", "Usuario creado correctamente");
+			} catch (Exception e) {
+				objectNode.put("message", "Error al crear usuario");
+				objectNode.put("error", e.toString());
+				return false;
+			}
+		} else {
+			objectNode.put("message", "usuario ya existe");
+			return false;
+		}
+
+		return true;
 	}
 
 	public long selectLastUserId() {
@@ -42,38 +75,11 @@ public class RegisterController {
 		return result;
 	}
 
-	
-	//funcion register
-	@PostMapping("/crear-usuario")
-	public ObjectNode createUserBDD(@RequestBody(required = false) Usuario usuario) {
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode objectNode = mapper.createObjectNode();
-		if (!userAlreadyExists(usuario.getNombre_usuario(), usuario.getMail())) {
-		int idNewUser = (int) selectLastUserId() + 1;
-		usuario.setId_usuario(idNewUser);
-		// String pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
-		String queryCreateUser = "insert into usuarios set ID_USUARIO= \"" + usuario.getId_usuario() + "\", NOMBRE_USUARIO = \""
-				+ usuario.getNombre_usuario() + "\", PASSWORD = \"" + usuario.getPassword() + "\", MAIL= \""
-				+ usuario.getMail() + "\", LOCALIDAD = \"" + usuario.getLocalidad() + "\", NIVEL=" + usuario.getNivel();
-		try {	
-			jdbcTemplate.execute(queryCreateUser);
-			objectNode.put("message", "Usuario creado correctamente");
-		} catch (Exception e) {
-			objectNode.put("message", "Error al crear usuario");
-			objectNode.put("error", e.toString());
-		}
-		return objectNode;}
-		objectNode.put("message", "Usuario o mail ya existen");
-		return objectNode;
-	}	
-
-	
-	//comprobacion si username o mail ya estan en bdd
-	public boolean userAlreadyExists(String username, String mail){
-		String findUser = "select id_usuario from usuarios where NOMBRE_USUARIO = ? or mail = ?";
-		 int count = jdbcTemplate.queryForObject(findUser, new Object[] { username, mail }, Integer.class);
-		    return count > 0;
-
+	public boolean userAlreadyExists(String username, String mail) {
+		String sql = "SELECT count(*) FROM usuarios WHERE nombre_usuario = ? or mail = ?";
+		int count = jdbcTemplate.queryForObject(sql, new Object[] { username, mail }, Integer.class);
+		System.out.println(sql);
+		System.out.println(count);
+		return count > 0;
 	}
-
 }
