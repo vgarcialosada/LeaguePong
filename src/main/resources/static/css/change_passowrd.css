@@ -1,8 +1,18 @@
+.xpass{
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+  }
 .container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    justify-content: space-around ;
+    display:flex;
+    justify-content: center;
+    height: 500px;
+  }
+.buts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
+
+

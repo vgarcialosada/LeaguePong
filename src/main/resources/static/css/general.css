@@ -12,7 +12,7 @@ header {
 h1{
   display: flex;
   justify-content: space-around;
-  font-size: 50px;
+  font-size: 40px;
   align-items: center;
 }
 body {
@@ -39,4 +39,13 @@ body {
 .logo{
   width: 80px;
   height: 80px;
+}
+input{
+  border-radius: 5px;
+  border:2px solid rgb(59, 51, 204);
+  
+}
+input:focus{
+  outline: none;
+  border:2px solid rgb(204, 0, 0);
 }
