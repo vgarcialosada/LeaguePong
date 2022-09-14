@@ -5,5 +5,11 @@ function comprobarPasswords(ev) {
     var confpassValue = document.getElementById("confirm_password").value
    if(passValue !== confpassValue) {
        window.alert("Las contraseñas no coinciden")
+          returnToPreviousPage();
+    return false;
     }
+  
+}
+function returnToPreviousPage() {
+    window.history.back();
 }

@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="../css/create_user.css">
 <script src="../js/utilities.js"></script>
 <script src="../js/create_user.js"></script>
-
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js"></script>
 
 </head>
 <header>
@@ -21,8 +22,7 @@
 </header>
 <body>
 	<div class="container">
-	<p style="color:red; font-weight:bold; display:none;" id="failed_register_username">El nombre de usuario o mail ya estan en uso, por favor escoje otro</p>
-		<p style="color:red; font-weight:bold; display:none;" id="failed_register_pwd">Las contraseñas no coinciden</p>
+	<p style="color:red; font-weight:bold;" id="failed_register_username">El nombre de usuario o mail ya estan en uso, por favor escoje otro</p>
 		<div>
 			<form action="#" th:action="@{/register_user}" th:object="${usuario}"
 				method="post" onsubmit="comprobarPasswords()">
@@ -34,15 +34,13 @@
 		<div>
 			<label>Contraseña</label><br> <input type="password"
 				class="form-control" th:value="${password}"
-				th:name="password" th:id="password" onchange="passCheck();"
+				th:name="password" th:id="password"
 				required> 
 		</div>
 		<div>
 			<label>Confirmar Contraseña</label><br> <input type="password"
-			class="form-control" id="confirm_password" onchange="passCheck();" required>
+			class="form-control" id="confirm_password" required>
 		</div>
-			<p style="color:red; font-weight:bold;  display:none;" id="failed_register_pwd" >Las contraseñas deben coincidir</p>
-		
 		<div>
 			<label>E-mail</label><br> <input type="email"
 				class="form-control" th:value="${mail}"
@@ -307,7 +305,7 @@
 			<option value="2">Avanzado (2)</option>
 			<option value="3">Profesional (3)</option>
 		</select> <br> <br>
-		<button class="button1" id="submitFormRegister" onchange="passCheck();">Registrar</button>
+		<button class="button1">Registrar</button>
 		</form>
 	</div>
 

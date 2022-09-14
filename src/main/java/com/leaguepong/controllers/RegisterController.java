@@ -30,20 +30,19 @@ public class RegisterController {
 
 	@PostMapping("/register_user")
 	public String registerSubmit(@ModelAttribute Usuario usuario, Model model) {
+		Usuario newUser = usuario;
 		Logger logger = (Logger) LoggerFactory.getLogger(RegisterController.class);
-		logger.info(usuario.toString());
-		createUserBDD(usuario);
-		model.addAttribute("usuario", usuario);
-		return "userResult";
+		logger.info(newUser.toString());
+		if (createUserBDD(newUser)) {
+			model.addAttribute("usuario", usuario);
+			return "userResult";
+		} else {
+			return "create_user_username_error";
+		}
+
 	}
 
-	public long selectLastUserId() {
-		long result = jdbcTemplate.queryForObject("SELECT MAX(id_usuario) FROM leaguepong.usuarios;", Long.class);
-		return result;
-	}
-
-	@PostMapping("/crear-usuario")
-	public ObjectNode createUserBDD(@RequestBody(required = false) Usuario usuario) {
+	public boolean createUserBDD(@RequestBody(required = false) Usuario usuario) {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		if (!userAlreadyExists(usuario.getNombre_usuario(), usuario.getMail())) {
@@ -61,19 +60,26 @@ public class RegisterController {
 			} catch (Exception e) {
 				objectNode.put("message", "Error al crear usuario");
 				objectNode.put("error", e.toString());
+				return false;
 			}
 		} else {
 			objectNode.put("message", "usuario ya existe");
+			return false;
 		}
 
-		return objectNode;
+		return true;
 	}
-	
-public boolean userAlreadyExists(String username, String mail){
-	  String sql = "SELECT count(*) FROM usuarios WHERE nombre_usuario = ? or mail = ?";
-	    int count = jdbcTemplate.queryForObject(sql, new Object[] {username, mail}, Integer.class);
-	    System.out.println(sql);
-	    System.out.println(count);
-	    return count > 0;	
-}
+
+	public long selectLastUserId() {
+		long result = jdbcTemplate.queryForObject("SELECT MAX(id_usuario) FROM leaguepong.usuarios;", Long.class);
+		return result;
+	}
+
+	public boolean userAlreadyExists(String username, String mail) {
+		String sql = "SELECT count(*) FROM usuarios WHERE nombre_usuario = ? or mail = ?";
+		int count = jdbcTemplate.queryForObject(sql, new Object[] { username, mail }, Integer.class);
+		System.out.println(sql);
+		System.out.println(count);
+		return count > 0;
+	}
 }
