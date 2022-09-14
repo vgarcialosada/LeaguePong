@@ -1,17 +1,51 @@
-header {
-  background-color: rgb(211, 49, 49);
-  padding: 15px;
-  text-align: center;
-  color: white;
-  font-size: 20px;
-}
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,700&family=Play&display=swap');
 
+header {
+  background-color: rgb(56, 92, 211);
+  padding: 10px;
+  text-align: center;
+  color: white; 
+  font-family: 'IBM Plex Mono', monospace;
+  min-width: 100%;
+}
+h1{
+  display: flex;
+  justify-content: space-around;
+  font-size: 40px;
+  align-items: center;
+}
 body {
-  background-color: rgb(197, 195, 195);
+  background-color: rgb(197, 195, 195);  
+  font-family: 'Play', sans-serif;
 }
 .button1 {
-  background-color: #e05356;
+  background-color: #ffffff;
   border: none;
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 15px 32px;
+  border-radius: 10px;
+  min-width: 160px;
+  min-height: 40px;
+  font-weight: 600;
+}
+.button1:hover{
+  background-color: #82a0c7;
+}
+.button1:focus{
+  border: none;
+  outline: #e05356 solid 2px;
+}
+.logo{
+  width: 80px;
+  height: 80px;
+}
+input{
+  border-radius: 5px;
+  border:2px solid rgb(59, 51, 204);
+  
+}
+input:focus{
+  outline: none;
+  border:2px solid rgb(204, 0, 0);
 }
