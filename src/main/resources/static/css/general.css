@@ -4,6 +4,7 @@ header {
   text-align: center;
   color: white;
   font-size: 20px;
+  min-width: 100%;
 }
 
 body {
@@ -15,13 +16,13 @@ body {
   color: white;
   padding: 15px 32px;
   border-radius: 10px;
-  min-width: 150px;
+  min-width: 160px;
   min-height: 40px;
 }
 .button1:hover{
   background-color: #f5181c;
   min-height: 50px;
-  min-width: 170px;
+  min-width: 180px;
 }
 .button1:focus{
   border: none;
