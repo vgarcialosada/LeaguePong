@@ -24,6 +24,5 @@
 }
 .perfil{
   display: grid;
-  grid-template-rows: 1fr 5fr;
   grid-gap: 5vh;
 }
