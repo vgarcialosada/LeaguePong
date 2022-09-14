@@ -21,7 +21,7 @@
 	<div class="container">
 		<div>
 			<form action="#" th:action="@{/register_user}" th:object="${usuario}"
-				method="post" >
+				method="post"  onsubmit="comprobarPasswords()">
 				<label>Nombre de Usuario</label><br> <input type="text"
 					class="form-control" th:value="${nombre_usuario}"
 					th:name="nombre_usuario" th:id="nombre_usuario" 

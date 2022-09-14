@@ -44,24 +44,36 @@ public class RegisterController {
 
 	@PostMapping("/crear-usuario")
 	public ObjectNode createUserBDD(@RequestBody(required = false) Usuario usuario) {
-		int idNewUser = (int) selectLastUserId() + 1;
-		usuario.setId_usuario(idNewUser);
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
-		// String
-		// pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
-		String queryCreateUser = "insert into usuarios set ID_USUARIO= \"" + usuario.getId_usuario() + "\", NOMBRE_USUARIO = \""
-				+ usuario.getNombre_usuario() + "\", PASSWORD = \"" + usuario.getPassword() + "\", MAIL= \""
-				+ usuario.getMail() + "\", LOCALIDAD = \"" + usuario.getLocalidad() + "\", NIVEL=" + usuario.getNivel();
-		try {	
-			jdbcTemplate.execute(queryCreateUser);
-			objectNode.put("message", "Usuario creado correctamente");
-		} catch (Exception e) {
-			objectNode.put("message", "Error al crear usuario");
-			objectNode.put("error", e.toString());
+		if (!userAlreadyExists(usuario.getNombre_usuario(), usuario.getMail())) {
+			int idNewUser = (int) selectLastUserId() + 1;
+			usuario.setId_usuario(idNewUser);
+			// String
+			// pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
+			String queryCreateUser = "insert into usuarios set ID_USUARIO= \"" + usuario.getId_usuario()
+					+ "\", NOMBRE_USUARIO = \"" + usuario.getNombre_usuario() + "\", PASSWORD = \""
+					+ usuario.getPassword() + "\", MAIL= \"" + usuario.getMail() + "\", LOCALIDAD = \""
+					+ usuario.getLocalidad() + "\", NIVEL=" + usuario.getNivel();
+			try {
+				jdbcTemplate.execute(queryCreateUser);
+				objectNode.put("message", "Usuario creado correctamente");
+			} catch (Exception e) {
+				objectNode.put("message", "Error al crear usuario");
+				objectNode.put("error", e.toString());
+			}
+		} else {
+			objectNode.put("message", "usuario ya existe");
 		}
 
 		return objectNode;
-	}	
-
+	}
+	
+public boolean userAlreadyExists(String username, String mail){
+	  String sql = "SELECT count(*) FROM usuarios WHERE nombre_usuario = ? or mail = ?";
+	    int count = jdbcTemplate.queryForObject(sql, new Object[] {username, mail}, Integer.class);
+	    System.out.println(sql);
+	    System.out.println(count);
+	    return count > 0;	
+}
 }
