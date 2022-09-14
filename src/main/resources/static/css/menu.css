@@ -17,6 +17,5 @@
 }
 .menu{
   display: grid;
-  grid-template-rows: 1fr 6fr 1fr;
-  grid-gap: 10vh;
+  grid-template-rows: 1fr 5fr;
 }
