@@ -44,7 +44,7 @@ public class UsuarioController {
 	public List<Usuario> updateUsuario(@PathVariable int id) {
 		List<Usuario> userArr = new ArrayList<Usuario>();
 		String QUERY;
-			QUERY = "select ID_USUARIO, USERNAME, PASSWORD, MAIL, NIVEL from leaguepong.usuarios where id_usuario = " + id ;;
+			QUERY = "select ID_USUARIO, USERNAME, PASSWORD, MAIL, NIVEL from leaguepong.usuarios where id_usuario = " + id ;
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
 			Usuario user = new Usuario();
