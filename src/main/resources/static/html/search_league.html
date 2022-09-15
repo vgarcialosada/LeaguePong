@@ -16,18 +16,16 @@
   </head>
   <header><h1><img src="../img/logo500x500.png" class="logo" />Buscar Ligas<img src="../img/logo500x500.png" class="logo" /></h1></header>
   <body>
-        <input type="search" name="busqueda" placeholder="Buscar Liga" />
-        <input type="submit" value="Buscar" />
-
-    <ol>
-      <li>Elemento 1</li>
-      <li>Elemento 2</li>
-      ...
-      <li>Elemento N</li>
-    </ol>
+    <div class="containerLeague">
+     <div> 
+      <input  class="buscar" type="search" name="busqueda" placeholder="Buscar Liga" />
+      <input class="btnBuscar" type="submit" value="Buscar" />
+    </div>
+    <div class="ligas" id="ligas"></div>
     <a href="../html/menu.html" onclick="">
-      <button class="btn btn-secondary btn-sm">Volver</button>
-    <div id="todas"></div>
+      <button class="btn btn-secondary btn-sm display-none d-inline position-sticky bottom-0 start-50 translate-middle-x">Volver</button>
+
+    </div>
     <script src="../js/todas_ligas.js"></script>
   </body>
 </html>

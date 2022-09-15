@@ -1,9 +1,12 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    justify-content: space-around ;
-  }
-  
+.containerLeague{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: space-around ;
+}
+.btnBuscar{
+  border: none;
+  background-color: white;
+}
