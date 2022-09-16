@@ -1,16 +1,23 @@
 import axios from "axios";
 
-function crear_usuario_data() {
-  fetch("http://127.0.0.1:8080/register_user")
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-    //console.log(data[0]);
-    //for( i = 0; i < data.length; i++){
-      //console.log(data[i]);
-       // return data[i];
-    //} 
-}
-
+function create_user() {
+    res = fetch("http://127.0.0.1:8080/" + id + "/crear-liga", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombre_usuario: nombre_usuario.value,
+        password: password.value,
+        mail: reglas_de_liga.value,
+        localidad: localidad.value,
+        nivel: nivel.value,
+      }),
+    });
+ 
+    console.log(res.data);
+  }
 
 //comprueba pwd iguales
 function passCheck() {

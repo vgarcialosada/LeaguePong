@@ -1,6 +1,6 @@
 function create_league(id) {
     console.log("hello");
-    res = fetch("http://127.0.0.1:8080/" + id + "/crear-liga", {
+    res = fetch("http://127.0.0.1:8080/register_user", {
       method: "POST",
       headers: {
         Accept: "application/json",

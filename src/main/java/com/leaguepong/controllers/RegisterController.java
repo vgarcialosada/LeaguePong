@@ -28,7 +28,7 @@ public class RegisterController {
 		return "create_user";
 	}
 
-	@PostMapping("/register_user")
+	@PostMapping("/{http://localhost:8080/register_user")
 	public String registerSubmit(@ModelAttribute Usuario usuario, Model model) {
 		Usuario newUser = usuario;
 		Logger logger = (Logger) LoggerFactory.getLogger(RegisterController.class);
