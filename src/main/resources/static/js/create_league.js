@@ -13,9 +13,11 @@ function create_league(id) {
         ubicacion: ubicacion_de_liga.value,
         numero_jugadores: jugadores_de_liga.value,
       }),
+     
     });
     //const content = rawResponse.json();
-  
-    console.log(res);
+    
+    window.location.href = 'http://127.0.0.1:5500/src/main/resources/static/html/my_leagues.html'
   }
   //console.log("hello");
+  

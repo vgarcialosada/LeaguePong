@@ -13,3 +13,4 @@ function comprobarPasswords(ev) {
 function returnToPreviousPage() {
     window.history.back();
 }
+
