@@ -5,6 +5,7 @@
   align-content: center;
   text-align: center;
   justify-content: space-around ;
+  margin-top: 2vh;
 }
 .btnBuscar{
   border: none;

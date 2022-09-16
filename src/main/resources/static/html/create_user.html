@@ -30,27 +30,27 @@
 					class="form-control" th:value="${nombre_usuario}"
 					th:name="nombre_usuario" th:id="nombre_usuario" 
 					required>
-		</div>
+		</div><br>
 		<div>
 			<label>Contraseña</label><br> <input type="password"
 				class="form-control" th:value="${password}"
 				th:name="password" th:id="password" onchange="passCheck();"
 				required> 
 		</div>
-		<div>
+		<div><br>
 			<label>Confirmar Contraseña</label><br> <input type="password"
 			class="form-control" id="confirm_password" onchange="passCheck();" required>
 		</div>
 			<p style="color:red; font-weight:bold;  display:none;" id="failed_register_pwd" >Las contraseñas deben coincidir</p>
 		
-		<div>
+		<div><br>
 			<label>E-mail</label><br> <input type="email"
 				class="form-control" th:value="${mail}"
 				th:name="mail" th:id="mail" id="mail"
 				required> 
 		</div>
 		<h2 id="result"></h2>
-		<div>
+		<div><br>
 			<label>Ubicación</label><br> <select type="text"
 				class="form-control" th:value="${localidad}"
 				th:name="localidad" th:id="localidad" id="localidad"
@@ -294,18 +294,16 @@
 <option value="Zambia" id="ZM">Zambia</option>
 <option value="Zimbabue" id="ZW">Zimbabue</option>
 </select>
- 
-		
-		</div>
-		<label for="nivel">Selecciona tu nivel actual :</label><br> <select
-			class="form-control" th:value="${nivel}"
-				th:name="nivel" th:id="nivel" name="nivel" id="nivel"
-				required>
+</div><br>
+	<label for="nivel">Selecciona tu nivel actual :</label> <select
+		class="form-control" th:value="${nivel}"
+		th:name="nivel" th:id="nivel" name="nivel" id="nivel"
+		required>
 			<option value="0">Principiante (0)</option>
 			<option value="1">Amateur (1)</option>
 			<option value="2">Avanzado (2)</option>
 			<option value="3">Profesional (3)</option>
-		</select> <br> <br>
+		</select> <br> 
 		<button class="button1" id="submitFormRegister" onchange="passCheck();" onsubmit="crear_usuario_data()">Registrar</button>
 		</form>
 	</div>

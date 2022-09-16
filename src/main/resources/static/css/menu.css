@@ -5,6 +5,7 @@
 .container{
   display:flex;
   justify-content: center;
+  margin-top: 15vh;
 }
 .buts {
   display: flex;
