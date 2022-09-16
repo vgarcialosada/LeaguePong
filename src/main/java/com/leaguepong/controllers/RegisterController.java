@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,16 +29,16 @@ public class RegisterController {
 		return "create_user";
 	}
 
-	@PostMapping("/{http://localhost:8080/register_user")
-	public String registerSubmit(@ModelAttribute Usuario usuario, Model model) {
-		Usuario newUser = usuario;
+	@CrossOrigin(origins="*", maxAge = 3600)
+	@PostMapping("/register_user")
+	public String registerSubmit(@RequestBody Usuario usuario, Model model) {
+		Usuario newUser = usuario;	
 		Logger logger = (Logger) LoggerFactory.getLogger(RegisterController.class);
-		logger.info(newUser.toString());
 		if (createUserBDD(newUser)) {
 			model.addAttribute("usuario", usuario);
 			return "userResult";
 		} else {
-			return "create_user_username_error";
+			return "create_username_error";
 		}
 
 	}
@@ -48,10 +49,12 @@ public class RegisterController {
 		if (!userAlreadyExists(usuario.getNombre_usuario(), usuario.getMail())) {
 			int idNewUser = (int) selectLastUserId() + 1;
 			usuario.setId_usuario(idNewUser);
+			System.out.println(usuario);
+
 			// String
 			// pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
-			String queryCreateUser = "insert into usuarios set ID_USUARIO= \"" + usuario.getId_usuario()
-					+ "\", NOMBRE_USUARIO = \"" + usuario.getNombre_usuario() + "\", PASSWORD = \""
+			String queryCreateUser = "insert into usuarios set usuario"
+					+ " NOMBRE_USUARIO = \"" + usuario.getNombre_usuario() + "\", PASSWORD = \""
 					+ usuario.getPassword() + "\", MAIL= \"" + usuario.getMail() + "\", LOCALIDAD = \""
 					+ usuario.getLocalidad() + "\", NIVEL=" + usuario.getNivel();
 			try {
@@ -63,7 +66,7 @@ public class RegisterController {
 				return false;
 			}
 		} else {
-			objectNode.put("message", "usuario ya existe");
+			objectNode.put("message", "usuario ya exis	te");
 			return false;
 		}
 

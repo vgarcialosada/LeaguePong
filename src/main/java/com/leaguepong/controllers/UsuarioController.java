@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +23,14 @@ import com.leaguepong.entities.Usuario;
 public class UsuarioController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
-	//get datos usuario
+
+	// get datos usuario
+	@CrossOrigin(origins = "*", maxAge = 3600)
 	@GetMapping("/{id}/usuario")
 	public List<Usuario> getUsuario(@PathVariable int id) {
 		List<Usuario> userArr = new ArrayList<Usuario>();
 		String QUERY;
-			QUERY = "select ID_USUARIO, USERNAME, PASSWORD, MAIL, NIVEL from leaguepong.usuarios where id_usuario = " + id ;
+		QUERY = "select ID_USUARIO, USERNAME, PASSWORD, MAIL, NIVEL from leaguepong.usuarios where id_usuario = " + id;
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
 			Usuario user = new Usuario();
@@ -41,19 +43,45 @@ public class UsuarioController {
 		}
 		return userArr;
 	}
-	
-	//update de usuario medainte datos POST pasados por formulario !!!! pendiente encryptar nueva pwd
+
+	// get id usuario a partir de username y pwd
+	@CrossOrigin(origins = "*", maxAge = 3600)
+	@GetMapping("/{username}/{password}/usuario")
+	public long getUserId(@PathVariable String username, String password) {
+		long idUser = 1;
+		String QUERY;
+		QUERY = "select ID_USUARIO from leaguepong.usuarios where NOMBRE_USUARIO = \"" + username + " and PASSWORD = \""
+				+ password;
+		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
+		for (Map<String, Object> result : results) {
+			Usuario user = new Usuario();
+			idUser = ((BigInteger) result.get("ID_USUARIO")).longValue();
+		}
+		return idUser;
+	}
+
+	// update de usuario medainte datos POST pasados por formulario !!!! pendiente
+	// encryptar nueva pwd
 	@PostMapping("/{id}/update_usuario")
 	public ObjectNode updateUser(@PathVariable long id, @ModelAttribute Usuario usuario, Model model) {
-		String QUERYupdateUser;	
+		String QUERYupdateUser;
 		QUERYupdateUser = "";
-		if(usuario!=null) {
-			QUERYupdateUser+="update LEAGUEPONG.USUARIOS set ";	
-		if(usuario.getNombre_usuario()!=null) {QUERYupdateUser+="USERNAME = "+"'"+usuario.getNombre_usuario()+"'";}
-		if(usuario.getPassword()!=null) {QUERYupdateUser+=",PASSWORD = "+"'"+usuario.getPassword()+"'";}
-		if(usuario.getMail()!=null) {QUERYupdateUser+=",MAIL = "+"'"+usuario.getMail()+"'";}
-		if(usuario.getLocalidad()!=null) {QUERYupdateUser+=",LOCALIDAD = "+"'"+usuario.getLocalidad()+"'";}
-		QUERYupdateUser+=",NIVEL = "+usuario.getNivel();}
+		if (usuario != null) {
+			QUERYupdateUser += "update LEAGUEPONG.USUARIOS set ";
+			if (usuario.getNombre_usuario() != null) {
+				QUERYupdateUser += "USERNAME = " + "'" + usuario.getNombre_usuario() + "'";
+			}
+			if (usuario.getPassword() != null) {
+				QUERYupdateUser += ",PASSWORD = " + "'" + usuario.getPassword() + "'";
+			}
+			if (usuario.getMail() != null) {
+				QUERYupdateUser += ",MAIL = " + "'" + usuario.getMail() + "'";
+			}
+			if (usuario.getLocalidad() != null) {
+				QUERYupdateUser += ",LOCALIDAD = " + "'" + usuario.getLocalidad() + "'";
+			}
+			QUERYupdateUser += ",NIVEL = " + usuario.getNivel();
+		}
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		try {
@@ -64,9 +92,8 @@ public class UsuarioController {
 			objectNode.put("message", "Error al actualizar usuario");
 			objectNode.put("error", e.toString());
 		}
-		
+
 		return objectNode;
 	}
-	
 
 }
