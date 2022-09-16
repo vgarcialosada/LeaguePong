@@ -13,31 +13,18 @@ function create_user() {
         localidad: localidad.value,
         nivel: nivel.value,
       }),
-    });
-    alert(promiseState(res));
-    console.log(promiseState(res));
-  }
 
-  function promiseState(p) {
-    const t = {};
-    return Promise.race([p, t])
-      .then(v =>
-        (v === t) ? { state: "pending" } : { state: "fulfilled", value: v },
-        () => { state: "rejected" }
-      );
-}
-
-console.log = async function(...args) {
-  for (let arg of args) {
-    if (arg instanceof Promise) {
-      let state = await promiseState(arg);
-      window.innerHTML += `Promise { &lt;state&gt;: "${ state.state }"${ state.state === "fulfilled" ? ', &lt;value&gt;: ' + state.value : '' } }<br>`;
-    } else if (typeof arg === 'object') {
-      window.innerHTML += 'console.log arg:  ' + String(arg) + '<br>';
-    }
-    // add more else-ifs to handle strings, numbers, booleans, ... etc
+      
+    }).then((response) => response.text);
+   // console.log(res);
+   // fetch("http://127.0.0.1:8080/" + id + "/mis-ligas")
+    //.then((response) => response.json())
+    //.then((data) => console.log(data));
   }
-}
+ 
+
+
+  
 
 //comprueba pwd iguales
 function passCheck() {
