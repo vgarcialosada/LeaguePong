@@ -12,8 +12,10 @@ header {
 h1{
   display: flex;
   justify-content: space-around;
-  font-size: 40px;
+  font-size: 30px;
   align-items: center;
+  max-width: 60vw;
+  margin:auto;
 }
 body {
   background-color: rgb(197, 195, 195);  
@@ -48,14 +50,4 @@ input{
 input:focus{
   outline: none;
   border: 3px solid rgb(59, 51, 204);
-}
-.form-control{
-    border-radius: 5px;
-    border:2px solid rgb(59, 51, 204);
-    width: 100px;
-    height: 50px;
-  }
-.form-control:focus{
-  outline: none;
-  border:3px solid rgb(59,51,204);
 }
