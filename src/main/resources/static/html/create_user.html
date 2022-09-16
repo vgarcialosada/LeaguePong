@@ -25,25 +25,26 @@
 		<p style="color:red; font-weight:bold; display:none;" id="failed_register_pwd">Las contraseñas no coinciden</p>
 				<label>Nombre de Usuario</label><br> <input type="text" id="nombre_usuario"
 					required>
-		
+
+		</div><br>
+
 		<div>
 			<label>Contraseña</label><br> <input type="password" id="password" required onchange="passCheck();"
 				required> 
 		</div>
-		<div>
+		<div><br>
 			<label>Confirmar Contraseña</label><br> <input type="password"
 		 id="confirm_password" onchange="passCheck();" required>
 		</div>
 			<p style="color:red; font-weight:bold;  display:none;" id="failed_register_pwd" >Las contraseñas deben coincidir</p>
-		
-		<div>
-			<label>E-mail</label><br> <input type="email"  id="mail"
+
+		<div><br>
+			<label>E-mail</label><br> <input class="form-control"  type="email"  id="mail"
 				required> 
 		</div>
 		<h2 id="result"></h2>
 		<div>
-			<label>Ubicación</label><br> <select id="localidad"
-				required>
+			<label>Ubicación</label><br> <select class="form-control" id="localidad" required>
 <option value="Elegir" id="AF">Elegir opción</option>
 <option value="Afganistán" id="AF">Afganistán</option>
 <option value="Albania" id="AL">Albania</option>
@@ -286,14 +287,17 @@
  
 		
 		</div>
-		<label for="nivel">Selecciona tu nivel actual :</label><br> <select id="nivel"
+		<label for="nivel" >Selecciona tu nivel actual :</label><br> <select class="form-control" id="nivel"
 				required>
+
 			<option value="0">Principiante (0)</option>
 			<option value="1">Amateur (1)</option>
 			<option value="2">Avanzado (2)</option>
 			<option value="3">Profesional (3)</option>
-		</select> <br> <br>
+
+		</select> <br>
 		<button class="button1" id="submitFormRegister" onchange="passCheck()"  onclick="create_user()">Registrar</button>
+
 	</div>
 
 </body>
