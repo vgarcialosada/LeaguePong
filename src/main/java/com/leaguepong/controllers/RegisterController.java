@@ -34,45 +34,43 @@ public class RegisterController {
 	public String registerSubmit(@RequestBody Usuario usuario, Model model) {
 		Usuario newUser = usuario;	
 		Logger logger = (Logger) LoggerFactory.getLogger(RegisterController.class);
-		if (createUserBDD(newUser)) {
+		createUserBDD(usuario);
 			model.addAttribute("usuario", usuario);
 			return "userResult";
-		} else {
-			return "create_username_error";
-		}
-
-	}
+		} 
 
 	@CrossOrigin(origins="*", maxAge = 3600)
-	public boolean createUserBDD(@RequestBody(required = false) Usuario usuario) {
+	public ObjectNode createUserBDD(@RequestBody(required = false) Usuario usuario) {
+		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
+		try {
 		if (!userAlreadyExists(usuario.getNombre_usuario(), usuario.getMail())) {
 			int idNewUser = (int) selectLastUserId() + 1;
 			usuario.setId_usuario(idNewUser);
 			System.out.println(usuario);
-
 			// String
 			// pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
-			String queryCreateUser = "insert into usuarios set usuario"
+			String queryCreateUser = "insert into LEAGUEPONG.usuarios usuario"
 					+ " NOMBRE_USUARIO = \"" + usuario.getNombre_usuario() + "\", PASSWORD = \""
 					+ usuario.getPassword() + "\", MAIL= \"" + usuario.getMail() + "\", LOCALIDAD = \""
 					+ usuario.getLocalidad() + "\", NIVEL=" + usuario.getNivel();
-			try {
+		
 				jdbcTemplate.execute(queryCreateUser);
 				objectNode.put("message", "Usuario creado correctamente");
-			} catch (Exception e) {
+		}
+				else {
+					objectNode.put("message", "usuario ya existe");
+				}
+		}
+		 catch (Exception e) {
 				objectNode.put("message", "Error al crear usuario");
 				objectNode.put("error", e.toString());
-				System.out.println(objectNode);
-				return false;
 			}
-		} else {
-			objectNode.put("message", "usuario ya exis	te");
-			return false;
-		}
+		 
+		
 
-		return true;
+		return objectNode;
 	}
 
 	@CrossOrigin(origins="*", maxAge = 3600)
