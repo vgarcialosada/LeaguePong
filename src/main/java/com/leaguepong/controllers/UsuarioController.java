@@ -44,7 +44,7 @@ public class UsuarioController {
 		return userArr;
 	}
 
-	// get id usuario a partir de username y pwd
+	// get id usuario a partir de username y pwd	
 	@CrossOrigin(origins = "*", maxAge = 3600)
 	@GetMapping("/{username}/{password}/usuario")
 	public long getUserId(@PathVariable String username, String password) {

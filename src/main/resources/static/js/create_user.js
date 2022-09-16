@@ -14,8 +14,30 @@ function create_user() {
         nivel: nivel.value,
       }),
     });
- console.log(res)
+    alert(promiseState(res));
+    console.log(promiseState(res));
   }
+
+  function promiseState(p) {
+    const t = {};
+    return Promise.race([p, t])
+      .then(v =>
+        (v === t) ? { state: "pending" } : { state: "fulfilled", value: v },
+        () => { state: "rejected" }
+      );
+}
+
+console.log = async function(...args) {
+  for (let arg of args) {
+    if (arg instanceof Promise) {
+      let state = await promiseState(arg);
+      window.innerHTML += `Promise { &lt;state&gt;: "${ state.state }"${ state.state === "fulfilled" ? ', &lt;value&gt;: ' + state.value : '' } }<br>`;
+    } else if (typeof arg === 'object') {
+      window.innerHTML += 'console.log arg:  ' + String(arg) + '<br>';
+    }
+    // add more else-ifs to handle strings, numbers, booleans, ... etc
+  }
+}
 
 //comprueba pwd iguales
 function passCheck() {

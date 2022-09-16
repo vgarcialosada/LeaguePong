@@ -43,6 +43,7 @@ public class RegisterController {
 
 	}
 
+	@CrossOrigin(origins="*", maxAge = 3600)
 	public boolean createUserBDD(@RequestBody(required = false) Usuario usuario) {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
@@ -63,6 +64,7 @@ public class RegisterController {
 			} catch (Exception e) {
 				objectNode.put("message", "Error al crear usuario");
 				objectNode.put("error", e.toString());
+				System.out.println(objectNode);
 				return false;
 			}
 		} else {
@@ -73,16 +75,16 @@ public class RegisterController {
 		return true;
 	}
 
+	@CrossOrigin(origins="*", maxAge = 3600)
 	public long selectLastUserId() {
 		long result = jdbcTemplate.queryForObject("SELECT MAX(id_usuario) FROM leaguepong.usuarios;", Long.class);
 		return result;
 	}
-
+	
+@CrossOrigin(origins="*", maxAge = 3600)
 	public boolean userAlreadyExists(String username, String mail) {
 		String sql = "SELECT count(*) FROM usuarios WHERE nombre_usuario = ? or mail = ?";
 		int count = jdbcTemplate.queryForObject(sql, new Object[] { username, mail }, Integer.class);
-		System.out.println(sql);
-		System.out.println(count);
 		return count > 0;
 	}
 }
