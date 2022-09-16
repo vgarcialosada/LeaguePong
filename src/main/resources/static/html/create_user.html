@@ -23,16 +23,12 @@
 	<div class="container">
 	<p style="color:red; font-weight:bold; display:none;" id="failed_register_username">El nombre de usuario o mail ya estan en uso, por favor escoje otro</p>
 		<p style="color:red; font-weight:bold; display:none;" id="failed_register_pwd">Las contraseñas no coinciden</p>
-				<label>Nombre de Usuario</label><br> <input type="text" id="nombre_usuario"
-					required>
-
-		</div><br>
-
+				<label>Nombre de Usuario</label><br> <input type="text" id="nombre_usuario" required>
 		<div>
 			<label>Contraseña</label><br> <input type="password" id="password" required onchange="passCheck();"
 				required> 
 		</div>
-		<div><br>
+		<div>
 			<label>Confirmar Contraseña</label><br> <input type="password"
 		 id="confirm_password" onchange="passCheck();" required>
 		</div>
@@ -299,6 +295,6 @@
 		<button class="button1" id="submitFormRegister" onchange="passCheck()"  onclick="create_user()">Registrar</button>
 
 	</div>
-
+</div>
 </body>
 </html>
