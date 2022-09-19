@@ -29,15 +29,15 @@ public class RegisterController {
 		return "create_user";
 	}
 
-	@CrossOrigin(origins="*", maxAge = 3600)
+	@CrossOrigin(origins = "*", maxAge = 3600)
 	@PostMapping("/register_user")
 	public String registerSubmit(@RequestBody Usuario usuario) {
-		Usuario newUser = usuario;	
+		Usuario newUser = usuario;
 		Logger logger = (Logger) LoggerFactory.getLogger(RegisterController.class);
 		createUserBDD(usuario);
-			//model.addAttribute("usuario", usuario);
-			return "ok";
-		} 
+		// model.addAttribute("usuario", usuario);
+		return "ok";
+	}
 
 	public ObjectNode createUserBDD(@RequestBody(required = false) Usuario usuario) {
 		ObjectMapper mapper = new ObjectMapper();
@@ -48,28 +48,24 @@ public class RegisterController {
 			System.out.println(usuario);
 			// String
 			// pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
-			String queryCreateUser = "insert into LEAGUEPONG.usuarios set NOMBRE_USUARIO = \"" + usuario.getNombre_usuario() + "\", PASSWORD = \""
-					+ usuario.getPassword() + "\", MAIL= \"" + usuario.getMail() + "\", LOCALIDAD = \""
-					+ usuario.getLocalidad() + "\", NIVEL = " + usuario.getNivel();
-	      
+			String queryCreateUser = "insert into LEAGUEPONG.usuarios set NOMBRE_USUARIO = \""
+					+ usuario.getNombre_usuario() + "\", PASSWORD = \"" + usuario.getPassword() + "\", MAIL= \""
+					+ usuario.getMail() + "\", LOCALIDAD = \"" + usuario.getLocalidad() + "\", NIVEL = "
+					+ usuario.getNivel();
+
 			System.out.println(queryCreateUser);
-				jdbcTemplate.execute(queryCreateUser);
-				objectNode.put("message", "Usuario creado correctamente");
+			jdbcTemplate.execute(queryCreateUser);
+			objectNode.put("message", "Usuario creado correctamente");
+		} else {
+			objectNode.put("message", "usuario ya existe");
 		}
-				else {
-					objectNode.put("message", "usuario ya existe");
-				}
 		return objectNode;
-		}
-		 
-		
-	
+	}
 
 	public long selectLastUserId() {
 		long result = jdbcTemplate.queryForObject("SELECT MAX(id_usuario) FROM leaguepong.usuarios;", Long.class);
 		return result;
 	}
-	
 
 	public boolean userAlreadyExists(String username, String mail) {
 		String sql = "SELECT count(*) FROM usuarios WHERE nombre_usuario = ? or mail = ?";

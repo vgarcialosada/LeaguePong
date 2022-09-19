@@ -26,7 +26,7 @@ public class LigasController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	@CrossOrigin(origins="*", maxAge = 3600)
+	@CrossOrigin(origins = "*", maxAge = 3600)
 
 	@GetMapping("/todas-ligas")
 	public List<Liga> allLeagues(@RequestParam(required = false) String name,
@@ -62,15 +62,16 @@ public class LigasController {
 		}
 		return ligaArr;
 	}
-	@CrossOrigin(origins="*", maxAge = 3600)
-	
+
+	@CrossOrigin(origins = "*", maxAge = 3600)
+
 	@GetMapping("{id}/mis-ligas")
-	
+
 	public List<Liga> myLeagues(@PathVariable long id) {
 		final String QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
-				+" from leaguepong.ligas inner join leaguepong.usuarios_ligas "
-				+"on ligas.ID_LIGA = usuarios_ligas.ID_LIGA where ID_USUARIO ="+ id + "; ";
-		
+				+ " from leaguepong.ligas inner join leaguepong.usuarios_ligas "
+				+ "on ligas.ID_LIGA = usuarios_ligas.ID_LIGA where ID_USUARIO =" + id + "; ";
+
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		List<Liga> ligaArr = new ArrayList<Liga>();
 
@@ -88,22 +89,24 @@ public class LigasController {
 		return ligaArr;
 	}
 
-	/* Crea una liga a partir de un objeto Liga pasado desde el front
-	 * Añade el usuario logeado a la liga y lo hace admin
-	*/
-	@CrossOrigin(origins="*", maxAge = 3600)
+	/*
+	 * Crea una liga a partir de un objeto Liga pasado desde el front Añade el
+	 * usuario logeado a la liga y lo hace admin
+	 */
+	@CrossOrigin(origins = "*", maxAge = 3600)
 	@PostMapping("{id}/crear-liga")
-	public ObjectNode createLeague(@PathVariable long id, @RequestBody Liga liga){
+	public ObjectNode createLeague(@PathVariable long id, @RequestBody Liga liga) {
 
-			ObjectMapper mapper = new ObjectMapper();
-			ObjectNode objectNode = mapper.createObjectNode();
-		
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode objectNode = mapper.createObjectNode();
 		String queryCreateLeague = "insert into ligas set NOMBRE = \"" + liga.getNombre() + "\", PASSWORD = \""
-				+ liga.getPassword() + "\", REGLAS= \"" + liga.getReglas() + "\", UBICACION = \""
-				+ liga.getUbicacion() + "\", NUMERO_JUGADORES=" + liga.getNumero_jugadores() + ";";
-		
-		String querySetUserToleague = "insert into usuarios_ligas set id_usuario = "+id
-				+", id_liga=(select id_liga from ligas where nombre ='"+liga.getNombre()+"'), is_admin = true;";
+				+ liga.getPassword() + "\", REGLAS= \"" + liga.getReglas() + "\", UBICACION = \"" + liga.getUbicacion()
+				+ "\", NUMERO_JUGADORES=" + liga.getNumero_jugadores() + ";";
+
+		String querySetUserToleague = "insert into usuarios_ligas set id_usuario = " + id
+				+ ", id_liga=(select id_liga from ligas where nombre ='" + liga.getNombre() + "'), is_admin = true;";
+
+		System.out.println(queryCreateLeague);
 		try {
 			jdbcTemplate.execute(queryCreateLeague);
 			jdbcTemplate.execute(querySetUserToleague);
@@ -115,24 +118,23 @@ public class LigasController {
 
 		return objectNode;
 	}
-	
-	//elimina todos los registros de una liga, partidos, usuarios y la liga
-	@CrossOrigin(origins="*", maxAge = 3600)
+
+	// elimina todos los registros de una liga, partidos, usuarios y la liga
+	@CrossOrigin(origins = "*", maxAge = 3600)
 	@DeleteMapping("eliminar-liga/{id_liga}")
-	public ObjectNode deleteLeague(@PathVariable long id_liga){
+	public ObjectNode deleteLeague(@PathVariable long id_liga) {
 
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
-		
-		
-		String queryDeleteMatchesOfLeague = "delete from partidos where id_liga = "+id_liga+";";
-		String queryDeleteUsersOfLeague = "delete from usuarios_ligas where id_liga = "+id_liga+";";
-		String queryDeleteLeague = "delete from ligas where id_liga = "+id_liga+";";
+
+		String queryDeleteMatchesOfLeague = "delete from partidos where id_liga = " + id_liga + ";";
+		String queryDeleteUsersOfLeague = "delete from usuarios_ligas where id_liga = " + id_liga + ";";
+		String queryDeleteLeague = "delete from ligas where id_liga = " + id_liga + ";";
 		try {
 			jdbcTemplate.execute(queryDeleteMatchesOfLeague);
 			jdbcTemplate.execute(queryDeleteUsersOfLeague);
 			jdbcTemplate.execute(queryDeleteLeague);
-			
+
 			objectNode.put("message", "Liga eliminada correctamente");
 		} catch (Exception e) {
 			objectNode.put("message", "Error al eliminar liga");

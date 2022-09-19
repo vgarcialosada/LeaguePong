@@ -20,25 +20,12 @@ function create_user() {
    // fetch("http://127.0.0.1:8080/" + id + "/mis-ligas")
     //.then((response) => response.json())
     //.then((data) => console.log(data));
+        window.location.href = 'http://127.0.0.1:5500/src/main/resources/static/html/index.html'
+
   }
  
 
 
   
 
-//comprueba pwd iguales
-function passCheck() {
-  var password = document.getElementById('password');
-  var vpassword = document.getElementById('confirm_password');
-
-  if (password.value != vpassword.value) {
-    document.getElementById("submitFormRegister").disabled = true;
-    document.getElementById("failed_register_pwd").style.display="inline"
-  }
-  else {
-    document.getElementById("submitFormRegister").disabled = false;
-        document.getElementById("failed_register_pwd").style.display="none"
-
-  }
-}
 
