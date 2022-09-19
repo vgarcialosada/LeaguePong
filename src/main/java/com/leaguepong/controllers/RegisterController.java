@@ -31,55 +31,46 @@ public class RegisterController {
 
 	@CrossOrigin(origins="*", maxAge = 3600)
 	@PostMapping("/register_user")
-	public String registerSubmit(@RequestBody Usuario usuario, Model model) {
+	public String registerSubmit(@RequestBody Usuario usuario) {
 		Usuario newUser = usuario;	
 		Logger logger = (Logger) LoggerFactory.getLogger(RegisterController.class);
 		createUserBDD(usuario);
-			model.addAttribute("usuario", usuario);
-			return "userResult";
+			//model.addAttribute("usuario", usuario);
+			return "ok";
 		} 
 
-	@CrossOrigin(origins="*", maxAge = 3600)
 	public ObjectNode createUserBDD(@RequestBody(required = false) Usuario usuario) {
-		
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
-		try {
 		if (!userAlreadyExists(usuario.getNombre_usuario(), usuario.getMail())) {
 			int idNewUser = (int) selectLastUserId() + 1;
 			usuario.setId_usuario(idNewUser);
 			System.out.println(usuario);
 			// String
 			// pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
-			String queryCreateUser = "insert into LEAGUEPONG.usuarios usuario"
-					+ " NOMBRE_USUARIO = \"" + usuario.getNombre_usuario() + "\", PASSWORD = \""
+			String queryCreateUser = "insert into LEAGUEPONG.usuarios set NOMBRE_USUARIO = \"" + usuario.getNombre_usuario() + "\", PASSWORD = \""
 					+ usuario.getPassword() + "\", MAIL= \"" + usuario.getMail() + "\", LOCALIDAD = \""
-					+ usuario.getLocalidad() + "\", NIVEL=" + usuario.getNivel();
-		
+					+ usuario.getLocalidad() + "\", NIVEL = " + usuario.getNivel();
+	      
+			System.out.println(queryCreateUser);
 				jdbcTemplate.execute(queryCreateUser);
 				objectNode.put("message", "Usuario creado correctamente");
 		}
 				else {
 					objectNode.put("message", "usuario ya existe");
 				}
+		return objectNode;
 		}
-		 catch (Exception e) {
-				objectNode.put("message", "Error al crear usuario");
-				objectNode.put("error", e.toString());
-			}
 		 
 		
+	
 
-		return objectNode;
-	}
-
-	@CrossOrigin(origins="*", maxAge = 3600)
 	public long selectLastUserId() {
 		long result = jdbcTemplate.queryForObject("SELECT MAX(id_usuario) FROM leaguepong.usuarios;", Long.class);
 		return result;
 	}
 	
-@CrossOrigin(origins="*", maxAge = 3600)
+
 	public boolean userAlreadyExists(String username, String mail) {
 		String sql = "SELECT count(*) FROM usuarios WHERE nombre_usuario = ? or mail = ?";
 		int count = jdbcTemplate.queryForObject(sql, new Object[] { username, mail }, Integer.class);
