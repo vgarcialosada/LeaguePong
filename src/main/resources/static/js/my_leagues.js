@@ -4,7 +4,7 @@ async function mis_ligas(id) {
   );
   res1 = res.map((res) => res.nombre);
   console.log(res1);
-  document.getElementById("my_leagues").innerHTML = res1;
+  document.getElementById("data").innerHTML = res1;
 }
 //console.log("hello");
 //document.getElementById("my_leagues").innerHTML = mis_ligas(1);
