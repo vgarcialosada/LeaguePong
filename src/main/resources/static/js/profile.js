@@ -22,4 +22,3 @@ async function mi_perfil(id) {
 
 }	
 mi_perfil(localStorage.getItem("id"));
-

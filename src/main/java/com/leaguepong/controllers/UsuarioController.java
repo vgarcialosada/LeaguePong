@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.leaguepong.entities.Liga;
 import com.leaguepong.entities.Usuario;
 
 @RestController
@@ -30,7 +32,8 @@ public class UsuarioController {
 	public List<Usuario> getUsuario(@PathVariable int id) {
 		List<Usuario> userArr = new ArrayList<Usuario>();
 		String QUERY;
-		QUERY = "select ID_USUARIO, NOMBRE_USUARIO, PASSWORD, MAIL, LOCALIDAD,  NIVEL from leaguepong.usuarios where id_usuario = " + id;
+		QUERY = "select ID_USUARIO, NOMBRE_USUARIO, PASSWORD, MAIL, LOCALIDAD,  NIVEL from leaguepong.usuarios where id_usuario = "
+				+ id;
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
 			Usuario user = new Usuario();
@@ -45,7 +48,7 @@ public class UsuarioController {
 		return userArr;
 	}
 
-	// get id usuario a partir de username y pwd	
+	// get id usuario a partir de username y pwd
 	@CrossOrigin(origins = "*", maxAge = 3600)
 	@GetMapping("/{username}/{password}/usuario")
 	public long getUserId(@PathVariable String username, String password) {
@@ -62,32 +65,17 @@ public class UsuarioController {
 	}
 
 	// update de usuario medainte datos POST pasados por formulario !!!! pendiente
-	// encryptar nueva pwd
+	// pendiente encryptar nueva pwd
+	@CrossOrigin(origins = "*", maxAge = 3600)
 	@PostMapping("/{id}/update_usuario")
-	public ObjectNode updateUser(@PathVariable long id, @ModelAttribute Usuario usuario, Model model) {
-		String QUERYupdateUser;
-		QUERYupdateUser = "";
-		if (usuario != null) {
-			QUERYupdateUser += "update LEAGUEPONG.USUARIOS set ";
-			if (usuario.getNombre_usuario() != null) {
-				QUERYupdateUser += "USERNAME = " + "'" + usuario.getNombre_usuario() + "'";
-			}
-			if (usuario.getPassword() != null) {
-				QUERYupdateUser += ",PASSWORD = " + "'" + usuario.getPassword() + "'";
-			}
-			if (usuario.getMail() != null) {
-				QUERYupdateUser += ",MAIL = " + "'" + usuario.getMail() + "'";
-			}
-			if (usuario.getLocalidad() != null) {
-				QUERYupdateUser += ",LOCALIDAD = " + "'" + usuario.getLocalidad() + "'";
-			}
-			QUERYupdateUser += ",NIVEL = " + usuario.getNivel();
-		}
+	public ObjectNode updateUser(@PathVariable int id, @RequestBody Usuario user) {
+		user.setId_usuario(id);
+		System.out.println(user);
+		String QueryUpdateUser = setUpdateString(user);
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		try {
-			jdbcTemplate.execute(QUERYupdateUser);
-			jdbcTemplate.execute(QUERYupdateUser);
+			jdbcTemplate.execute(QueryUpdateUser);
 			objectNode.put("message", "usuario actualizado");
 		} catch (Exception e) {
 			objectNode.put("message", "Error al actualizar usuario");
@@ -95,6 +83,32 @@ public class UsuarioController {
 		}
 
 		return objectNode;
+	}
+
+	// crear string para update de usuario
+	public String setUpdateString( Usuario usuario) {
+		String QUERYupdateUser = "";
+		if (usuario != null) {
+			QUERYupdateUser += "update LEAGUEPONG.USUARIOS set ";
+			if (usuario.getNombre_usuario() != null) {
+				QUERYupdateUser += "NOMBRE_USUARIO = " + "'" + usuario.getNombre_usuario() + "',";
+			}
+			if (usuario.getMail() != null) {
+				QUERYupdateUser += "MAIL = " + "'" + usuario.getMail() + "',";
+			}
+			if (usuario.getLocalidad() != null) {
+				QUERYupdateUser += "LOCALIDAD = " + "'" + usuario.getLocalidad() + "',";
+			}
+			QUERYupdateUser += "NIVEL = " + usuario.getNivel() + " ";
+		}
+		// si query acaba en , cambiamos por ;
+		if (QUERYupdateUser.endsWith(",")) {
+			QUERYupdateUser = QUERYupdateUser.substring(0, QUERYupdateUser.length() - 1) + " ";
+		} 
+
+		QUERYupdateUser += "where id_usuario = " + usuario.getId_usuario() + ";";
+		System.out.println(QUERYupdateUser);
+		return QUERYupdateUser;
 	}
 
 }
