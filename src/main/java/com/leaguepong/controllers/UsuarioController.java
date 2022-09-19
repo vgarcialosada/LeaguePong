@@ -30,13 +30,14 @@ public class UsuarioController {
 	public List<Usuario> getUsuario(@PathVariable int id) {
 		List<Usuario> userArr = new ArrayList<Usuario>();
 		String QUERY;
-		QUERY = "select ID_USUARIO, USERNAME, PASSWORD, MAIL, NIVEL from leaguepong.usuarios where id_usuario = " + id;
+		QUERY = "select ID_USUARIO, NOMBRE_USUARIO, PASSWORD, MAIL, LOCALIDAD,  NIVEL from leaguepong.usuarios where id_usuario = " + id;
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
 			Usuario user = new Usuario();
 			user.setId_usuario(((BigInteger) result.get("ID_USUARIO")).longValue());
-			user.setNombre_usuario((String) result.get("USERNAME"));
+			user.setNombre_usuario((String) result.get("NOMBRE_USUARIO"));
 			user.setPassword((String) result.get("PASSWORD"));
+			user.setLocalidad((String) result.get("LOCALIDAD"));
 			user.setMail((String) result.get("MAIL"));
 			user.setNivel((int) result.get("NIVEL"));
 			userArr.add(user);
