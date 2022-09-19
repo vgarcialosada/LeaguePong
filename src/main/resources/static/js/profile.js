@@ -1,5 +1,7 @@
+
+//funcion ver datos perfil
 async function mi_perfil(id) {
-	res = await fetch("http://127.0.0.1:8080/" + id + "/usuario").then(
+	res = await fetch("http://127.0.0.1:8080/" +  localStorage.getItem("id") + "/usuario").then(
 		(response) => response.json()
 	);
 	document.getElementById("nombre").innerHTML = res.map((res) => res.nombre_usuario);
@@ -19,5 +21,5 @@ async function mi_perfil(id) {
 
 
 }	
-mi_perfil(1);
+mi_perfil(localStorage.getItem("id"));
 
