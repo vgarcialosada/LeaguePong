@@ -21,4 +21,9 @@ async function mi_perfil(id) {
 
 
 }	
+
+function editProfile(){
+	    window.location.href = 'http://127.0.0.1:5500/src/main/resources/static/html/edit_profile.html'
+}	
+
 mi_perfil(localStorage.getItem("id"));
