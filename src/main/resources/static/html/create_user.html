@@ -20,6 +20,22 @@
 	<h1>Crear Usuario</h1>
 </header>
 <body>
+	<div class="fondo" id="fondopc">
+		<video src="../img/fondopc.mp4"
+		autoplay="true" 
+		muted="true"
+		loop="true"
+		>
+		</video>
+	  </div>
+	  <div class="fondo" id="fondoandroid">
+		<video src="../img/fondoandroid.mp4"
+		autoplay="true" 
+		muted="true"
+		loop="true"
+		>
+		</video>
+	  </div>
 	<div class="container">
 		<p style="color: red; font-weight: bold; display: none;"
 			id="failed_register_username">El nombre de usuario o mail ya
@@ -332,8 +348,9 @@
 
 		</select> 
 		<button class="button1" id="submitFormRegister" onchange="passCheck()"
-			onclick="create_user()">Registrar</button>
-
+			onclick="create_user()" disabled>Registrar</button>
+			<br>
+			<a href="../html/index.html" class="volver"><button class="btn btn-secondary btn-sm">Volver</button></a>
 	</div>
 </body>
 </html>

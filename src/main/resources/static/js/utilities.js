@@ -17,7 +17,10 @@ function passCheck() {
 
   }
 }
-
+function btnRegistrar(){
+  document.getElementById("submitFormRegister").disabled = false;
+}
+btnRegistrar()
 
 function returnToPreviousPage() {
     window.history.back();

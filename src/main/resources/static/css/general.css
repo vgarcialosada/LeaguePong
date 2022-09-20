@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,700&family=Play&display=swap');
 
 header {
-  background-color: rgb(56, 92, 211);
+  
   padding: 10px;
   text-align: center;
   color: white; 
@@ -36,7 +36,7 @@ body {
 }
 .button1:focus{
   border: none;
-  outline: rgb(59, 51, 204) solid 4px;
+  outline:white solid 3px;
 }
 .logo{
   width: 80px;
@@ -44,10 +44,44 @@ body {
 }
 input{
   border-radius: 5px;
-  border: 2px solid rgb(59, 51, 204);
+  border: 2px solid white;
+  background-color: rgb(202, 198, 198);
   
 }
 input:focus{
   outline: none;
-  border: 3px solid rgb(59, 51, 204);
+  border: 3px solid white;
+}
+body {
+  position: relative;
+  margin: 0;
+  color:#eeefe3;
+}
+video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -2;
+  max-width: 100%;
+  max-height: 100%;
+  background-color: black;
+}
+#fondoandroid {
+  display: none;
+}
+@media only screen and (max-width: 800px) {
+  #fondoandroid {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-height: 100%;
+    min-width: 100%;
+    display: inline-flex;
+  }
+  .container{
+    min-width:70%;
+      
+  }
 }
