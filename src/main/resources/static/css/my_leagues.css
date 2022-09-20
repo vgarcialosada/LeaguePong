@@ -1,40 +1,51 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    justify-content: space-around ;
-    margin-top: 15vh;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: space-around;
+  margin-top: 15vh;
+}
+#my_leagues {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+.titles {
+  font-size: 50px;
+  font-weight: bold;
+  background-color: aqua;
+}
+.rows {
+  font-size: 25px;
+  background-color: azure;
+}
+#my_leagues2 {
+}
+@media only screen and (max-width: 768px) {
+  .titles,
+  .rows {
+    font-size: 20px;
   }
-  body {
-    position: relative;
-    margin: 0;
-  }
-   video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -2;
-    max-width: 100%;
-    max-height: 100%;
-    background-color: black;
-  }
-  #fondoandroid{
-    display: none;
-  }
-  @media only screen and (max-width: 800px){
-    #fondoandroid{
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      min-height: 100%;
-      min-width: 100%;
-      display:inline-flex;     
-    }
-  }
+}
+body {
+  background-color: #111927;
+  background-image: radial-gradient(
+      at 47% 33%,
+      hsl(162, 77%, 40%) 0,
+      transparent 59%
+    ),
+    radial-gradient(at 82% 65%, hsl(218.29, 16%, 83%) 0, transparent 55%);
+}
 
-  
-  
+/* Glassmorphism card effect */
+.card {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  flex-direction: column;
+  color: white;
+}

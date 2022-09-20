@@ -46,10 +46,10 @@ public class RegisterController {
 			int idNewUser = (int) selectLastUserId() + 1;
 			usuario.setId_usuario(idNewUser);
 			System.out.println(usuario);
-			// String
-			// pwdEncriptada=PasswordEncrypt.SecuredPasswordGenerator.encryptPwd(usuario.getPassword());
+			String  pwdEncriptada=PasswordController.encryptPassword(usuario.getPassword());
+			
 			String queryCreateUser = "insert into LEAGUEPONG.usuarios set NOMBRE_USUARIO = \""
-					+ usuario.getNombre_usuario() + "\", PASSWORD = \"" + usuario.getPassword() + "\", MAIL= \""
+					+ usuario.getNombre_usuario() + "\", PASSWORD = \"" + pwdEncriptada + "\", MAIL= \""
 					+ usuario.getMail() + "\", LOCALIDAD = \"" + usuario.getLocalidad() + "\", NIVEL = "
 					+ usuario.getNivel();
 
