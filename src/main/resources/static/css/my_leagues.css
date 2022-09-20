@@ -1,10 +1,51 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    justify-content: space-around ;
-    margin-top: 15vh;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: space-around;
+  margin-top: 15vh;
+}
+#my_leagues {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+.titles {
+  font-size: 50px;
+  font-weight: bold;
+  background-color: aqua;
+}
+.rows {
+  font-size: 25px;
+  background-color: azure;
+}
+#my_leagues2 {
+}
+@media only screen and (max-width: 768px) {
+  .titles,
+  .rows {
+    font-size: 20px;
   }
-  
+}
+body {
+  background-color: #111927;
+  background-image: radial-gradient(
+      at 47% 33%,
+      hsl(162, 77%, 40%) 0,
+      transparent 59%
+    ),
+    radial-gradient(at 82% 65%, hsl(218.29, 16%, 83%) 0, transparent 55%);
+}
+
+/* Glassmorphism card effect */
+.card {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  flex-direction: column;
+  color: white;
+}
