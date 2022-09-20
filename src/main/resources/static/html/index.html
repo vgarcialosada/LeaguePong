@@ -15,12 +15,25 @@
     <link rel="stylesheet" href="../css/index.css" />
   </head>
   <header>
-    <h1>
-      <img src="../img/logo500x500.png" class="logo" />Bienvenido a League
-      Pong<img src="../img/logo500x500.png" class="logo" />
-    </h1>
   </header>
   <body>
+    <div class="fondo" id="fondopc">
+    <video src="../img/fondopc.mp4"
+    autoplay="true" 
+    muted="true"
+    loop="true"
+    >
+    </video>
+  </div>
+  <div class="fondo" id="fondoandroid">
+    <video src="../img/fondoandroid.mp4"
+    autoplay="true" 
+    muted="true"
+    loop="true"
+    >
+    </video>
+  </div>
+
     <div class="container">
       <div>
         <label>Nombre de Usuario</label><br />
@@ -36,10 +49,8 @@
       <a href="../html/create_user.html" onclick=""
         ><button class="btn btn-secondary btn-sm">
           Crear nuevo usuario
-        </button></a
-      >
+        </button></a>
     </div>
-
     <script src="../js/index.js"></script>
   </body>
 </html>
