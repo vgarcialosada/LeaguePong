@@ -2,12 +2,8 @@ async function mis_ligas(id) {
   res = await fetch("http://127.0.0.1:8080/" + id + "/mis-ligas").then(
     (response) => response.json()
   );
-  console.log(res);
-  // res1 = res.map((x) => );
-  console.log(res);
   for (i = 0; i < res.length; i++) {
-    // var new_row = document.getElementById("my_leagues");
-    // new_row.className = "card";
+
     document.getElementById("my_leagues").innerHTML += `<div class="card">
                       <h2>${res[i].nombre}</h2>
                       <h4>${res[i].reglas}</h4>
@@ -34,7 +30,7 @@ async function mis_ligas(id) {
 //const mis_ligas = async (id) =>
 //(await fetch("http://127.0.0.1:8080/" + id + "/mis-ligas")).json();
 
-mis_ligas(1);
+mis_ligas(localStorage.getItem("id"));
 //.then(
 //(data) => (document.getElementById("my_leagues").innerHTML = data.map(nombre))
 //);

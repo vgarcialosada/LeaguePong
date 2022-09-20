@@ -5,7 +5,9 @@ function passCheck() {
   var password = document.getElementById('password');
   var vpassword = document.getElementById('confirm_password');
 
-  if (password.value != vpassword.value) {
+  if (password.value != vpassword.value|| 
+  vpassword.value ==null ||
+   password.value==null) {
     document.getElementById("submitFormRegister").disabled = true;
     document.getElementById("failed_register_pwd").style.display="inline"
   }
