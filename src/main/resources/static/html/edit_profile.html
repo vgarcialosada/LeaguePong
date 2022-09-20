@@ -22,10 +22,11 @@
 <body>
 	<form>
 		<div class="container">
+		<p style="color:green; display:none" id="succesfulUpdate"> Cambios guardados correctamente</p>
 			<label><b>Nombre</b></label> <input id="nombre" class="form-control"
-				type="text" required> <label><b>E-mail</b></label> <input
-				id="mail" class="form-control" type="email" required> <label><b>Ubicación</b></label>
-			<select class="form-control" id="localidad" required>
+				type="text" > <label><b>E-mail</b></label> <input
+				id="mail" class="form-control" type="email" > <label><b>Ubicación</b></label>
+			<select class="form-control" id="localidad" >
 				<option value="Elegir" id="AF">Elegir opción</option>
 				<option value="Afganistán" id="AF">Afganistán</option>
 				<option value="Albania" id="AL">Albania</option>
@@ -291,7 +292,7 @@
 				<option value="Zambia" id="ZM">Zambia</option>
 				<option value="Zimbabue" id="ZW">Zimbabue</option>
 			</select> <label><b>Nivel</b></label> <label for="nivel">Selecciona tu
-				nivel actual :</label> <select class="form-control" id="nivel" required>
+				nivel actual :</label> <select class="form-control" id="nivel" >
 				<option value="1">Principiante (0)</option>
 				<option value="2">Amateur (1)</option>
 				<option value="3">Avanzado (2)</option>
@@ -300,7 +301,14 @@
 
 			<button class="button1" onclick="updateProfile()">Guardar
 				cambios</button>
+			<br />
 		</div>
+
 	</form>
+	<div class="container">
+
+		<a href="../html/profile.html" class="volver"><button style="margin-top:-200%;"
+				class="btn btn-secondary btn-sm">Volver</button></a>
+	</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.leaguepong.controllers;
+	package com.leaguepong.controllers;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class UsuarioController {
 	// pendiente encryptar nueva pwd
 	@CrossOrigin(origins = "*", maxAge = 3600)
 	@PostMapping("/{id}/update_usuario")
-	public String updateUser(@PathVariable int id, @RequestBody Usuario user) {
+	public ObjectNode updateUser(@PathVariable int id, @RequestBody Usuario user) {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		//verificacion si usuario o mail ya existen
@@ -83,7 +83,7 @@ public class UsuarioController {
 //		} else {
 //			objectNode.put("message", "Usuario o mail ya existen");
 //		}
-		 return "profile";
+		 return objectNode;
 	}
 
 	// crear string para update de usuario
