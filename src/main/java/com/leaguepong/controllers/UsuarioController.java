@@ -1,4 +1,4 @@
-package com.leaguepong.controllers;
+	package com.leaguepong.controllers;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -7,10 +7,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.leaguepong.entities.Liga;
 import com.leaguepong.entities.Usuario;
 
 @RestController
@@ -69,24 +66,28 @@ public class UsuarioController {
 	@CrossOrigin(origins = "*", maxAge = 3600)
 	@PostMapping("/{id}/update_usuario")
 	public ObjectNode updateUser(@PathVariable int id, @RequestBody Usuario user) {
-		user.setId_usuario(id);
-		System.out.println(user);
-		String QueryUpdateUser = setUpdateString(user);
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
-		try {
-			jdbcTemplate.execute(QueryUpdateUser);
-			objectNode.put("message", "usuario actualizado");
-		} catch (Exception e) {
-			objectNode.put("message", "Error al actualizar usuario");
-			objectNode.put("error", e.toString());
-		}
-
-		return objectNode;
+		//verificacion si usuario o mail ya existen
+		//if (userAlreadyExists(user.getNombre_usuario(), user.getMail())) {
+			user.setId_usuario(id);
+			System.out.println(user);
+			String QueryUpdateUser = setUpdateString(user);
+			try {
+				jdbcTemplate.execute(QueryUpdateUser);
+				objectNode.put("message", "usuario actualizado");
+			} catch (Exception e) {
+				objectNode.put("message", "Error al actualizar usuario");
+				objectNode.put("error", e.toString());
+			}
+//		} else {
+//			objectNode.put("message", "Usuario o mail ya existen");
+//		}
+		 return objectNode;
 	}
 
 	// crear string para update de usuario
-	public String setUpdateString( Usuario usuario) {
+	public String setUpdateString(Usuario usuario) {
 		String QUERYupdateUser = "";
 		if (usuario != null) {
 			QUERYupdateUser += "update LEAGUEPONG.USUARIOS set ";
@@ -104,11 +105,17 @@ public class UsuarioController {
 		// si query acaba en , cambiamos por ;
 		if (QUERYupdateUser.endsWith(",")) {
 			QUERYupdateUser = QUERYupdateUser.substring(0, QUERYupdateUser.length() - 1) + " ";
-		} 
+		}
 
 		QUERYupdateUser += "where id_usuario = " + usuario.getId_usuario() + ";";
 		System.out.println(QUERYupdateUser);
 		return QUERYupdateUser;
 	}
+	
+//	public boolean userAlreadyExists(String username, String mail) {
+//		String sql = "SELECT count(*) FROM usuarios WHERE nombre_usuario = ? or mail = ?";
+//		int count = jdbcTemplate.queryForObject(sql, new Object[] { username, mail }, Integer.class);
+//		return count > 0;
+//	}
 
 }
