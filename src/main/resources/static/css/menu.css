@@ -1,11 +1,13 @@
-.menu{
-  display: grid;
-  grid-template-rows: 1fr 5fr;
-}
-.container{
-  display:flex;
-  justify-content: center;
-  margin-top: 15vh;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: space-around;
+  margin-top: 30vh;
+  max-width: 30%;
+  padding:20px;
 }
 .buts {
   display: flex;
