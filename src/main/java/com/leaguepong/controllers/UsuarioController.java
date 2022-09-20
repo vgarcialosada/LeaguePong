@@ -54,12 +54,15 @@ public class UsuarioController {
 	public long getUserId(@PathVariable String username, String password) {
 		long idUser = 1;
 		String QUERY;
-		QUERY = "select ID_USUARIO from leaguepong.usuarios where NOMBRE_USUARIO = \"" + username + " and PASSWORD = \""
-				+ password;
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode objectNode = mapper.createObjectNode();
+		QUERY = "select ID_USUARIO from leaguepong.usuarios where NOMBRE_USUARIO = \""+username+"\" and PASSWORD = \""+password+"\";";
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
 			Usuario user = new Usuario();
 			idUser = ((BigInteger) result.get("ID_USUARIO")).longValue();
+			System.out.println(idUser);
+			objectNode.put("id", idUser);
 		}
 		return idUser;
 	}
