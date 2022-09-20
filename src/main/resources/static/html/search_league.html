@@ -13,6 +13,8 @@
     />
     <link rel="stylesheet" href="../css/general.css" />
     <link rel="stylesheet" href="../css/search_league.css" />
+    <link rel="stylesheet" href="../css/my_leagues.css" />
+<script type="text/javascript" src="../js/search_league.js"></script>
   </head>
   <header><h1><img src="../img/logo500x500.png" class="logo" />Buscar Ligas<img src="../img/logo500x500.png" class="logo" /></h1></header>
   <body>
@@ -34,14 +36,14 @@
     </div>
     <div class="containerLeague">
      <div> 
-      <input  class="buscar" type="search" name="busqueda" placeholder="Buscar Liga" />
-      <input class="btnBuscar" type="submit" value="Buscar" />
+      <input id="searchInput" class="buscar" type="search" name="busqueda" placeholder="Buscar Liga" />
+      <input class="btnBuscar" type="submit" value="Buscar" onclick="league_search()"/>
     </div>
-    <div class="ligas" id="ligas"></div>
-    <a href="../html/menu.html" onclick="">
+    <div class="ligas" id="display_leagues"></div>
+    <a href="../html/menu.html" >
       <button class="btn btn-secondary btn-sm display-none d-inline position-sticky bottom-0 start-50 translate-middle-x">Volver</button>
-
+</a>
     </div>
-    <script type="module" src="../js/todas_ligas.js"></script>
+ 
   </body>
 </html>
