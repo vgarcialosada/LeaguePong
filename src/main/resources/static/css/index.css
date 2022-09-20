@@ -13,36 +13,5 @@
   border: 1px solid rgb(241, 244, 248);
   max-width: 30%;
   padding:20px;
-}
-body {
-  position: relative;
-  margin: 0;
-  color:#eeefe3;
-}
-video {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -2;
-  max-width: 100%;
-  max-height: 100%;
-  background-color: black;
-}
-#fondoandroid {
-  display: none;
-}
-@media only screen and (max-width: 800px) {
-  #fondoandroid {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-height: 100%;
-    min-width: 100%;
-    display: inline-flex;
-  }
-  .container{
-    min-width:70%;
-  }
+
 }
