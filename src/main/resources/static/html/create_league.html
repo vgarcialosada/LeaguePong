@@ -33,26 +33,25 @@
 	  </div>
 	<div class="container">
 		<div class="titulo">
-			<h1>Crear Liga</h1> <br>
+			<h1>Crear Liga</h1>
 		</div>
 		<div>
 			<p style="color: red; font-weight: bold; display: none;"
 				id="failed_register_pwd">Las contraseñas no coinciden</p>
 			<br> <label><h5>Nombre de la liga</h5></label><br /> <input
-				type="text" id="nombre_de_liga" class="form-control" required /><br />
-		</div>
+				type="text" id="nombre_de_liga" class="form-control" required />
+		</div><br>
 		<div>
-			<label><h5>Contraseña</h5></label><br />
+			<label><h5>Contraseña</h5></label>
 			<!-- Password field -->
 			<input type="password" id="password" class="form-control"
 				onchange="passCheck();" /><br />
 		</div>
-		<br />
 		<div>
-			<label><h5>Repetir Contraseña</h5></label><br />
+			<label><h5>Repetir Contraseña</h5></label>
 			<!-- Password field -->
 			<input type="password" id="confirm_password" class="form-control"
-				onchange="passCheck();" /><br /> <br />
+				onchange="passCheck();" />
 		</div>
 		<div>
 			<label><h5>Ubicación</h5></label><br /> <select
@@ -323,11 +322,10 @@
 				<option value="Zimbabue" id="ZW">Zimbabue</option>
 			</select>
 			<div>
-				<label><h5>Reglas</h5></label><br />
+				<label><h5>Reglas</h5></label>
 				<textarea id="reglas_de_liga" class="form-control" required placeholder="Define tus reglas"/></textarea>
 			</div>
-			<div>
-				<div class="container">
+			
 					<label for="nivel"><h5>Selecciona número de jugadores</h5></label><select
 						class="form-control" th:value="${nivel}" th:name="nivel"
 						th:id="nivel" name="nivel" id="jugadores_de_liga" required>
@@ -351,13 +349,12 @@
 						<option value="19">19</option>
 						<option value="20">20</option>
 					</select>
-				</div>
-			</div>
-			<br />
+			
+			</div><br>
 			<div>
 				<button class="button1" id="submitFormRegister	"
 					onclick="create_league();">Crear</button>
-				<br /> <a href="../html/my_leagues.html" onclick=""></a>
+				 <a href="../html/my_leagues.html" onclick=""></a>
 			</div>
 			<div id="create_league"></div>
 		</div>
