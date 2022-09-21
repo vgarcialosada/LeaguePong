@@ -17,12 +17,18 @@ function passCheck() {
 
   }
 }
-function btnRegistrar(){
-  document.getElementById("submitFormRegister").disabled = false;
-}
-btnRegistrar()
-
+	
 function returnToPreviousPage() {
     window.history.back();
 }
+
+function addSound(){
+  var bns = document.getElementsByTagName("button");
+ for (i = 0; i < bns.length; i++) {
+    bns[i].addEventListener("click", function() {
+    var sound = document.getElementById("audio");
+  sound.play(); });
+  }}
+  
+  addSound();
 

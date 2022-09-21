@@ -46,8 +46,8 @@ public class RegisterController {
 			int idNewUser = (int) selectLastUserId() + 1;
 			usuario.setId_usuario(idNewUser);
 			System.out.println(usuario);
-			String  pwdEncriptada=PasswordController.encryptPassword(usuario.getPassword());
-			
+			String pwdEncriptada = PasswordController.encryptPassword(usuario.getPassword());
+
 			String queryCreateUser = "insert into LEAGUEPONG.usuarios set NOMBRE_USUARIO = \""
 					+ usuario.getNombre_usuario() + "\", PASSWORD = \"" + pwdEncriptada + "\", MAIL= \""
 					+ usuario.getMail() + "\", LOCALIDAD = \"" + usuario.getLocalidad() + "\", NIVEL = "
@@ -63,7 +63,13 @@ public class RegisterController {
 	}
 
 	public long selectLastUserId() {
-		long result = jdbcTemplate.queryForObject("SELECT MAX(id_usuario) FROM leaguepong.usuarios;", Long.class);
+		long 	result=0;
+		try {
+			 result = jdbcTemplate.queryForObject("SELECT MAX(id_usuario) FROM leaguepong.usuarios;", Long.class);
+		} catch (Exception e) {
+			return result;
+		}
+		if((Long)result==null){result=0;}
 		return result;
 	}
 
