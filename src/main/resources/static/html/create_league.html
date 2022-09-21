@@ -52,7 +52,7 @@
 			<!-- Password field -->
 			<input type="password" id="confirm_password" class="form-control"
 				onchange="passCheck();" />
-		</div>
+		</div><br>
 		<div>
 			<label><h5>Ubicación</h5></label><br /> <select
 				id="ubicacion_de_liga" class="form-control" required>
@@ -321,10 +321,10 @@
 				<option value="Zambia" id="ZM">Zambia</option>
 				<option value="Zimbabue" id="ZW">Zimbabue</option>
 			</select>
-			<div>
+			<div><br>
 				<label><h5>Reglas</h5></label>
 				<textarea id="reglas_de_liga" class="form-control" required placeholder="Define tus reglas"/></textarea>
-			</div>
+			</div><br>
 			
 					<label for="nivel"><h5>Selecciona número de jugadores</h5></label><select
 						class="form-control" th:value="${nivel}" th:name="nivel"
