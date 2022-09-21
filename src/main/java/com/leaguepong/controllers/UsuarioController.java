@@ -1,7 +1,8 @@
-	package com.leaguepong.controllers;
+package com.leaguepong.controllers;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -48,20 +49,20 @@ public class UsuarioController {
 	// get id usuario a partir de username y pwd
 	@CrossOrigin(origins = "*", maxAge = 3600)
 	@GetMapping("/{username}/{password}/usuario")
-	public long getUserId(@PathVariable String username, String password) {
-		long idUser = 1;
+	public List<Usuario> getUserId(@PathVariable String username,@PathVariable String password) {
+		int idUser;
+		List<Usuario> userArr = new ArrayList<Usuario>();
 		String QUERY;
-		ObjectMapper mapper = new ObjectMapper();
-		ObjectNode objectNode = mapper.createObjectNode();
-		QUERY = "select ID_USUARIO from leaguepong.usuarios where NOMBRE_USUARIO = \""+username+"\" and PASSWORD = \""+password+"\";";
+		String encryptedPwd = PasswordController.encryptPassword(password);
+		QUERY = "select ID_USUARIO from leaguepong.usuarios where NOMBRE_USUARIO = \"" + username
+				+ "\" and PASSWORD = \"" + encryptedPwd + "\";";
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
-			Usuario user = new Usuario();
-			idUser = ((BigInteger) result.get("ID_USUARIO")).longValue();
-			System.out.println(idUser);
-			objectNode.put("id", idUser);
+			idUser = (int) ((BigInteger) result.get("ID_USUARIO")).longValue();
+			userArr = getUsuario(idUser);
+
 		}
-		return idUser;
+		return userArr;
 	}
 
 	// update de usuario medainte datos POST pasados por formulario !!!! pendiente
@@ -71,22 +72,22 @@ public class UsuarioController {
 	public ObjectNode updateUser(@PathVariable int id, @RequestBody Usuario user) {
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
-		//verificacion si usuario o mail ya existen
-		//if (userAlreadyExists(user.getNombre_usuario(), user.getMail())) {
-			user.setId_usuario(id);
-			System.out.println(user);
-			String QueryUpdateUser = setUpdateString(user);
-			try {
-				jdbcTemplate.execute(QueryUpdateUser);
-				objectNode.put("message", "usuario actualizado");
-			} catch (Exception e) {
-				objectNode.put("message", "Error al actualizar usuario");
-				objectNode.put("error", e.toString());
-			}
+		// verificacion si usuario o mail ya existen
+		// if (userAlreadyExists(user.getNombre_usuario(), user.getMail())) {
+		user.setId_usuario(id);
+		System.out.println(user);
+		String QueryUpdateUser = setUpdateString(user);
+		try {
+			jdbcTemplate.execute(QueryUpdateUser);
+			objectNode.put("message", "usuario actualizado");
+		} catch (Exception e) {
+			objectNode.put("message", "Error al actualizar usuario");
+			objectNode.put("error", e.toString());
+		}
 //		} else {
 //			objectNode.put("message", "Usuario o mail ya existen");
 //		}
-		 return objectNode;
+		return objectNode;
 	}
 
 	// crear string para update de usuario
@@ -114,7 +115,7 @@ public class UsuarioController {
 		System.out.println(QUERYupdateUser);
 		return QUERYupdateUser;
 	}
-	
+
 //	public boolean userAlreadyExists(String username, String mail) {
 //		String sql = "SELECT count(*) FROM usuarios WHERE nombre_usuario = ? or mail = ?";
 //		int count = jdbcTemplate.queryForObject(sql, new Object[] { username, mail }, Integer.class);

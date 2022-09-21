@@ -12,5 +12,6 @@ function otros(){
 }
 function salir(){
     localStorage.removeItem("token")
+     localStorage.removeItem("id")
     window.location.href="http://127.0.0.1:5500/src/main/resources/static/html/index.html"     
 }
