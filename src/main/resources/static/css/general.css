@@ -67,6 +67,22 @@ video {
 #fondoandroid {
   display: none;
 }
+.container{
+    min-width:70%;     
+  }
+
+.titulo{
+  color:#f0fd71
+}
+.logo{
+    position:absolute;
+    height:200px;
+    width:200px;
+    margin-top: -250px;
+    margin-left: 100px;
+  
+}
+
 @media only screen and (max-width: 800px) {
   #fondoandroid {
     right: 0;
@@ -75,11 +91,9 @@ video {
     min-width: 100%;
     display: inline-flex;
   }
-  .container{
-    min-width:70%;
-      
+  .logo{
+      position:absolute;
+      height:10px;
+      width:100px;  
+  }  
   }
-}
-.titulo{
-  color:#f0fd71
-}
