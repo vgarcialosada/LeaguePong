@@ -14,22 +14,22 @@
     border: 1px solid rgb(241, 244, 248);
     max-width: 30%;
     padding:20px;
+    margin-top: 20vh;
   }
 .buts {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
   align-items: center;
 }
-.hiddenlogo{
-  position: fixed;
-  border-radius: 50%;
-  background-color: none;
-  width: 200px;
-  height: 200px;
-  margin-left: 120px;
-  margin-top: 10px;
-}
+
+@media only screen and (max-width: 800px) {
+
+  /*  estilo fondo */
+    #fondoandroid {
+      display:inline;
+      
+    }
+
+
 
 
