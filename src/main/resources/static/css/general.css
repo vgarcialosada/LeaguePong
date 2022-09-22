@@ -1,22 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,700&family=Play&display=swap');
 
-header {
-  position:absolute;  
+/* scrollbar width */
+::-webkit-scrollbar {
+  width: 5px;
+}
 
+/* scrollbar Track */
+::-webkit-scrollbar-track {
+  background: black;
 }
-h1{
-  display: flex;
-  justify-content: space-around;
-  font-size: 30px;
-  align-items: center;
-  max-width: 60vw;
-  margin:auto;
+
+/*  scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  background: #f0fd71;
 }
+
+/*  estilo fondo */
+video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -2;
+  max-width: 100%;
+  max-height: 100%;
+  background-color: black;
+}
+#fondoandroid {
+  display: none;
+}
+
+/*  estilo body */
 body {
-  background-color: rgb(197, 195, 195);  
+  position: relative;
+  margin: 0;
+  color:#eeefe3;
   font-family: 'Play', sans-serif;
 }
+.titulo{
+  color:#f0fd71
+}
+.container{
+  min-width: 30%;
+  max-width: 40%;
+  
+}
+
+/*  estilo botones */
 .button1 {
   background-color: #ffffff;
   border: none;
@@ -34,10 +66,8 @@ body {
   border: none;
   outline:white solid 3px;
 }
-.logo{
-  width: 80px;
-  height: 80px;
-}
+
+/*  estilo inputs */
 input{
   border-radius: 5px;
   border: 2px solid white;
@@ -48,58 +78,54 @@ input:focus{
   outline: none;
   border: 3px solid white;
 }
-body {
-  position: relative;
-  margin: 0;
-  color:#eeefe3;
-}
-video {
+
+/*  estilo "boton" logo */
+.hiddenlogo{
   position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -2;
-  max-width: 100%;
-  max-height: 100%;
-  background-color: black;
-}
-#fondoandroid {
-  display: none;
-}
-.titulo{
-  color:#f0fd71
-}
-.container{
-  min-width: 30%;
-  max-width: 40%;
-  
+  border-radius: 50%;
+  background-color: none;
+
+  width: 200px;
+  height: 200px;
+  margin-left: 120px;
+  margin-top: 10px;
+  z-index: 1000;
 }
 
+/*    MEDIAQUERYs */
+
+/*  estilos para android */
+
 @media only screen and (max-width: 800px) {
+
+/*  estilo fondo */
   #fondoandroid {
     display:inline;
     
   }
+ 
+/*  estilo body */
   .container{
     min-width: 60%;
-    max-width: 70%;
-    margin-left: 15%;
-  }
+    margin-left:5vh;
+    max-width: 80%;
 
   }
-/* width */
-::-webkit-scrollbar {
-  width: 5px;
+/*  estilo botones */
+.button1 {
+    padding:0px 0px ;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: black;
-}
+/*  estilo "boton" logo */
+  .hiddenlogo{
+    background-color: none ;
+    width: 100px;
+    height: 100px;
+    margin-top: 9vh;
+    margin-left: 2vh;
+    font-size: small;
+  }
+  
+  }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #f0fd71;
-}
 
