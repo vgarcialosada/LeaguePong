@@ -5,6 +5,11 @@
     align-content: center;
     text-align: center;
     justify-content: space-around ;
+    margin-top: 3vh;
+  }
+  .button1{
+    min-width: 300px;
+    max-width: 300px;
   }
 
 
