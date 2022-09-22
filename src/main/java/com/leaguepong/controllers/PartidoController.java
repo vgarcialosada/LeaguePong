@@ -32,7 +32,6 @@ public class PartidoController {
 			String QUERY;
 			QUERY = "SELECT * FROM leaguepong.partidos where id_liga= " + id_liga;
 			
-
 			List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 			for (Map<String, Object> result : results) {
 				Partido partido = new Partido();
