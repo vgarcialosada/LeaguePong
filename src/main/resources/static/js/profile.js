@@ -8,13 +8,18 @@ async function mi_perfil(id) {
 	document.getElementById("mail").innerHTML = res.map((res) => res.mail);
 	document.getElementById("ubicacion").innerHTML = res.map((res) => res.localidad);
 	var level = "";
-	console.log(res.map((res) => res.nivel));
-	switch (res.map((res) => res.nivel)) {
+	let nivel = res.map((res) => res.nivel)[0];
+	console.log(nivel);
+	switch (nivel) {
 		case 1: {level = "Principiante";}
+		break;
 		case 2: {level = "Amateur";}
+		break;
 		case 3: {level = "Avanzado";}
+		break;
 		case 4: {level = "Profesional";}
-		default: {level="Principiante";}
+		break;
+		default: {level="pito";}
 	}
 
 	document.getElementById("nivel").innerHTML = level;
