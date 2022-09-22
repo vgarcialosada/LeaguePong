@@ -32,20 +32,26 @@
     </video>
   </div>
     <div class="container">
+     <p
+          style="color: red; font-weight: bold; display: none"
+          id="failed_login"
+        >
+         Usuario o contraseña erroneos
+        </p>
       <div>
         <label>Nombre de Usuario</label><br />
-        <input type="text" id="nombre_usuario"/>
+        <input type="text" id="nombre_usuario" onchange="loginCheck();"/>
       </div>
       <div>
         <label>Contraseña</label><br />
-        <input type="password" id="password"/>
+        <input type="password" id="password" onchange="loginCheck();"/>
       </div>
       <br />
-      <button class="button1"  onclick="entrar()">ENTRAR</button>
+      <button class="button1"  onclick="entrar()" id="submitFormLogin">LOGIN</button>
       
       <br />
-      <a href="../html/create_user.html" onclick="playSound()"
-        ><button class="btn btn-secondary btn-sm">
+      <a href="../html/create_user.html"
+        ><button id="submitFormRegister" class="btn btn-secondary btn-sm">
           Crear nuevo usuario
         </button></a>
                 <audio id="audio" src="../audio/pong.mp3"></audio>
