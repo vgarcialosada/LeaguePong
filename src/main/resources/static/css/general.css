@@ -150,7 +150,7 @@ input:focus{
     margin-left: 2vh;
     font-size: small;
   }
-  
+}
   /* Glassmorphism card effect */
 .card {
   backdrop-filter: blur(16px) saturate(180%);
