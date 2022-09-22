@@ -14,20 +14,21 @@
   }
 .h3{
   display: inline-block;
+}
 .container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-}
+
 
 .h3 {
 	display: inline-block;
 }
 
 .mi {
-	color: #e05356;
+	color: #f0fd71;
 }
 
 .buttons {
