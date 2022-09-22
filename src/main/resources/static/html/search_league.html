@@ -13,13 +13,12 @@
     />
     <link rel="stylesheet" href="../css/general.css" />
     <link rel="stylesheet" href="../css/search_league.css" />
-    <link rel="stylesheet" href="../css/my_leagues.css" />
 <script type="text/javascript" src="../js/search_league.js"></script>
 <script src="../js/utilities.js"></script>
 
   </head>
-  <header><h1><img src="../img/logo500x500.png" class="logo" />Buscar Ligas<img src="../img/logo500x500.png" class="logo" /></h1></header>
   <body>
+
     <div class="fondo" id="fondopc">
       <video src="../img/fondopc.mp4"
       autoplay="true" 
@@ -28,6 +27,7 @@
       >
       </video>
     </div>
+
     <div class="fondo" id="fondoandroid">
       <video src="../img/fondoandroid.mp4"
       autoplay="true" 
@@ -36,11 +36,17 @@
       >
       </video>
     </div>
-    <div class="containerLeague">
+
+    <div class="container">
+
+      <div class="titulo">
+        <h1>Buscar Ligas</h1>
+      </div><br>
+
      <div> 
       <input id="searchInput" class="buscar" type="search" name="busqueda" placeholder="Buscar Liga" />
       <input class="btnBuscar" type="submit" value="Buscar" onclick="league_search()"/>
-    </div>
+    </div><br>
     <div class="ligas" id="display_leagues"></div>
     <a href="../html/menu.html" >
       <button class="btn btn-secondary btn-sm display-none d-inline position-sticky bottom-0 start-50 translate-middle-x">Volver</button>
