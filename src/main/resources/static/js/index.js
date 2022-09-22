@@ -1,8 +1,19 @@
+document.getElementById('username').onkeydown = function(e){
+   if(e.keyCode == 13){
+    entrar();
+   }
+};
+
+document.getElementById('password').onkeydown = function(e){
+   if(e.keyCode == 13){
+    entrar();
+   }
+};
+
 
 async function entrar() {
-	pwd = document.getElementById("password").value
 	res = await fetch("http://localhost:8080/" + document.getElementById("nombre_usuario").value + "/" +
-		pwd + "/usuario").then(
+		document.getElementById("password").value + "/usuario").then(
 			(response) => response.json()
 		);
 		//si no devuelve nada falla login

@@ -5,6 +5,7 @@ private long id_partido;
 private long id_jugador_1;
 private long id_jugador_2;
 private long id_ganador;
+
 public long getId_partido() {
 	return id_partido;
 }
@@ -36,6 +37,12 @@ public Partido(long id_partido, long id_jugador_1, long id_jugador_2, long id_ga
 	this.id_jugador_2 = id_jugador_2;
 	this.id_ganador = id_ganador;
 }
+@Override
+public String toString() {
+	return "Partido [id_partido=" + id_partido + ", id_jugador_1=" + id_jugador_1 + ", id_jugador_2=" + id_jugador_2
+			+ ", id_ganador=" + id_ganador + "]";
+}
+
 public Partido() {
 	// TODO Auto-generated constructor stub
 }
