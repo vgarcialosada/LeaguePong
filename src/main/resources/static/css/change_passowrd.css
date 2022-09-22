@@ -22,6 +22,14 @@
   align-content: center;
   align-items: center;
 }
-
+.hiddenlogo{
+  position: fixed;
+  border-radius: 50%;
+  background-color: none;
+  width: 200px;
+  height: 200px;
+  margin-left: 120px;
+  margin-top: 10px;
+}
 
 
