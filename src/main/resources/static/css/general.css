@@ -97,18 +97,6 @@ input:focus{
 
 /*  estilos para android */
 
- #logo_to_back {
-	background-color: blue; z-index : 2; width : 200px;
-	height: 200px;
-	margin-left: 7.5%;
-	margin-top: 1.5%;
-	width: 200px;
-	z-index: 2;
-	visibility:hidden;
-	position:fixed;
-}
-
-
 @media only screen and (max-width: 800px) {
 
 /*  estilo fondo */
@@ -125,17 +113,7 @@ input:focus{
     max-width: 70%;
     margin-left: 15%;
   }
-  
-  #logo_to_back {
-	background-color: blue; z-index : 2; width : 200px;
-	visibility:hidden;
-	height: 150px;
-	margin-left: 7.5%;
-	margin-top: 1.5%;
-	width: 150px;
-	z-index: 2;
-}
-  
+   
 /*  estilo botones */
 .button1 {
     padding:0px 0px ;

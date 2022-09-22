@@ -26,9 +26,14 @@
 
   /*  estilo fondo */
     #fondoandroid {
-      display:inline;
-      
+      display:inline;      
     }
+    
+    .container{
+      margin-left: 10vh;
+      min-height: 500px;
+    }
+  }
 
 
 
