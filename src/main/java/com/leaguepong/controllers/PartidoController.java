@@ -46,12 +46,15 @@ public class PartidoController {
 		}
 		
 	// update de partido para asignar ganadorusuario medainte datos POST pasados por
-	@PutMapping(value = "{partido_id}/{ganador_id}/set_winner")
+	@CrossOrigin(origins = "*", maxAge = 3600)
+	@GetMapping(value = "{partido_id}/{ganador_id}/set-winner")
 	public ObjectNode setwinner(@PathVariable(required = false, name = "partido_id") long partido_id,
 			@PathVariable(required = false, name = "ganador_id") long ganador_id) {
 		String QueryupdateWinner;
 		QueryupdateWinner = "update leaguepong.partidos set id_ganador= " + ganador_id + " where id_partido="
 				+ partido_id;
+		
+		System.out.println(QueryupdateWinner);
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		try {
