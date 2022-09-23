@@ -21,7 +21,7 @@ async function partidos_liga(id_liga) {
       "partidos_liga"
     ).innerHTML += `<div class="card" style="color:white;">
                     	<div id="partido${idPartido}">  <h4>  
-                    ${resplayer1[0].nombre_usuario} <img src='../img/r2.png' style='width:55px; height:30px;''"> <img src='../img/vs.jpg' style='width:55px; height:55px;''">  <img src='../img/r1.png' style='width:55px; height:30px;''">  ${resplayer2[0].nombre_usuario}
+                    ${resplayer1[0].nombre_usuario} <img src='../img/r2.png' style='width:55px; height:30px;''"> <img src='../img/vs.png' style='width:55px; height:55px;''">  <img src='../img/r1.png' style='width:55px; height:30px;''">  ${resplayer2[0].nombre_usuario}
                       <div id="whowon${idPartido}"><br>  <button class="btn btn-secondary btn-sm" 
                        onclick="setWinner(${idPartido},'${resplayer1[0].nombre_usuario}','${resplayer2[0].nombre_usuario}'	)
                        ">Ganador</button></h4>
