@@ -47,7 +47,6 @@ public class RegisterController {
 			usuario.setId_usuario(idNewUser);
 			System.out.println(usuario);
 			String pwdEncriptada = PasswordController.encryptPassword(usuario.getPassword());
-
 			String queryCreateUser = "insert into LEAGUEPONG.usuarios set NOMBRE_USUARIO = \""
 					+ usuario.getNombre_usuario() + "\", PASSWORD = \"" + pwdEncriptada + "\", MAIL= \""
 					+ usuario.getMail() + "\", LOCALIDAD = \"" + usuario.getLocalidad() + "\", NIVEL = "
