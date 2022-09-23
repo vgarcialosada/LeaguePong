@@ -11,6 +11,22 @@
     min-width: 300px;
     max-width: 300px;
   }
+  @media only screen and (max-width: 800px) {
+    .titulo{
+      font-size: 10px;
+      width: 500px;
+    }
+
+    .container{
+      position:fixed;
+      margin-top: 19vh;
+      max-width: 70%;
+      min-width: 70%;
+      min-height: 65%;
+      margin-left: 7vh;
+    }
+  
+  }
 
 
   
