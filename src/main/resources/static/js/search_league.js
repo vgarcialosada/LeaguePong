@@ -3,6 +3,7 @@ async function display_all_leagues(){
     (response) => response.json()
   );
   
+
       document.getElementById("display_leagues").innerHTML = `<h4> No hay ligas a las que puedas unirte </h4>`
   for (i = 0; i < res.length; i++) {
     let password = res[i].password
@@ -10,8 +11,9 @@ async function display_all_leagues(){
     let jugadoresFetch= await fetch(`http://127.0.0.1:8080/usuarios/${id_liga}`).then(
       (response) => response.json()
     );
-
+    
     document.getElementById("display_leagues").innerHTML += `<div class="card">
+
                       <h2>${res[i].nombre}</h2>
                       <p>Ubicación</p><h4>${res[i].ubicacion}</h4>
                       <p>Participantes</p><h4>${jugadoresFetch.length}/${res[i].numero_jugadores}</h4>
@@ -40,6 +42,12 @@ async function league_search() {
                     </div> <br><br>`;
   }
 }
+
+document.getElementById('searchInput').onkeydown = function(e) {
+	if (e.keyCode == 13) {
+		league_search();
+	}
+};
 
 display_all_leagues();
 
