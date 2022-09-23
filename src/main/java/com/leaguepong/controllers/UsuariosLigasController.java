@@ -55,7 +55,7 @@ public class UsuariosLigasController {
 		ObjectNode objectNode = mapper.createObjectNode();
 		
 		
-		final String knowUsersLeague="select id_usuario from usuarios_ligas where id_liga = 2;";
+		final String knowUsersLeague="select id_usuario from usuarios_ligas where id_liga = "+id_liga+";";
 		final String queryAddUser="insert into usuarios_ligas set id_usuario = "+id+", id_liga="+id_liga+", is_admin = false;";
 		String queryAddUserMatches="insert into partidos set id_liga = "+id_liga+", id_jugador_2 = "+id+", id_jugador_1 =";
 		

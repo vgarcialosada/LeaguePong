@@ -4,7 +4,7 @@ async function display_all_leagues(){
     (response) => response.json()
   );
   
-      document.getElementById("display_leagues").innerHTML = `<h4> Todas las ligas </h4>`
+      document.getElementById("display_leagues").innerHTML = `<h4> No hay ligas </h4>`
 
   for (i = 0; i < res.length; i++) {
     let password = res[i].password
@@ -35,7 +35,7 @@ async function league_search() {
                       <h4>${res[i].reglas}</h4>
                       <h4>${res[i].ubicacion}</h4>
                       <h4>${res[i].numero_jugadores}</h4>
-                      <button class="button1" onclick="joinLeague(${id_liga}, ${password})">Unirse</button>
+                      <button class="button1" onclick="joinLeague(${id_liga}, '${password}')">Unirse</button>
                     </div> <br><br>`;
   }
 }
