@@ -45,6 +45,10 @@ body {
 .container {
   min-width: 30%;
   max-width: 40%;
+<<<<<<< HEAD
+  font-size: 20px;  
+=======
+>>>>>>> 0e15eaa7c2dfc4d64effade298308e35410ee4c2
 }
 
 /*  estilo botones */
@@ -99,14 +103,21 @@ input:focus {
   #fondoandroid {
     display: inline;
   }
+<<<<<<< HEAD
+ 
+/*  estilo body */
+  .container{
+    min-width: 80%;
+    margin-left:5vh;
+=======
 
   /*  estilo body */
   .container {
     min-width: 60%;
     margin-left: 5vh;
+>>>>>>> 0e15eaa7c2dfc4d64effade298308e35410ee4c2
     max-width: 80%;
     max-width: 70%;
-    margin-left: 15%;
   }
 
   /*  estilo botones */
@@ -135,3 +146,15 @@ input:focus {
   color: white;
   min-width: 300px;
 }
+<<<<<<< HEAD
+
+/*  quitar azul de las a */
+
+a{
+  text-decoration:none;
+
+}
+
+
+=======
+>>>>>>> 0e15eaa7c2dfc4d64effade298308e35410ee4c2
