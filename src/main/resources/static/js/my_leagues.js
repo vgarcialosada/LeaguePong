@@ -4,7 +4,8 @@ async function mis_ligas(id) {
   );
   for (i = 0; i < res.length; i++) {
 
-    document.getElementById("my_leagues").innerHTML += `<a href="../html/league_view.html" ><div class="card">
+    document.getElementById("my_leagues").innerHTML += `<a href="../html/league_view.html"><div class="card" 
+    onclick="setLigaid(${res[i].id_liga})">
                       <h2>${res[i].nombre}</h2>
                       <h4>${res[i].reglas}</h4>
                       <h4>${res[i].ubicacion}</h4>
@@ -26,5 +27,8 @@ async function mis_ligas(id) {
   }
 }
 
+function setLigaid(liga_id){
+	localStorage.setItem("id_liga",liga_id);
+}
 mis_ligas(localStorage.getItem("id"));
 
