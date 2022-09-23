@@ -137,9 +137,8 @@ input:focus {
 
 /*  quitar azul de las a */
 
-a{
+a:link, a:visited, a:active {
   text-decoration:none;
-
 }
 
 

@@ -61,7 +61,6 @@ public class UsuariosLigasController {
 		
 		try {
 			List<Map<String, Object>> results = jdbcTemplate.queryForList(knowUsersLeague);
-			System.out.println(results);
 			jdbcTemplate.execute(queryAddUser);
 			for(Map<String, Object> result : results) {
 				queryAddUserMatches+=result.get("ID_USUARIO")+";";

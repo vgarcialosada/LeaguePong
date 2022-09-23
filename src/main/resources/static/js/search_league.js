@@ -4,7 +4,7 @@ async function display_all_leagues(){
     (response) => response.json()
   );
   
-      document.getElementById("display_leagues").innerHTML = `<h4> No hay ligas </h4>`
+      document.getElementById("display_leagues").innerHTML = `<h4> No hay ligas a las que puedas unirte </h4>`
 
   for (i = 0; i < res.length; i++) {
     let password = res[i].password
@@ -50,6 +50,7 @@ async function joinLeague(id_liga, password) {
     res = fetch(`http://127.0.0.1:8080/add-usuario/${id_liga}/${localStorage.getItem("id")}`, {
       method: "POST"
     });
+    window.location.reload()
   }else{
     alert("Contraseña incorrecta");
   }
