@@ -30,9 +30,9 @@ async function partidos_liga(id_liga) {
 function setWinner(id_partido_vista, p1, p2) {
 	//winnerToBDD(1,p1);
 	partidoWinner = document.getElementById("whowon" + id_partido_vista);
-	partidoWinner.innerHTML = 'Ganador? <button style="color:white; background-color:black;"' +
-		'onclick="winnerToBDD('+id_partido_vista+','+ p1 + ');">' + p1 + '</button>' +
-		'<button style="color:white; background-color:red;" onclick="winnerToBDD('+id_partido_vista+","+ p2 + ');">'+ p2 + '</button>';
+	partidoWinner.innerHTML = `Ganador? <button style="color:white; background-color:black;"
+		onclick="winnerToBDD('${id_partido_vista}','${p1}');"> ${p1} </button>
+		<button style="color:white; background-color:red;" onclick="winnerToBDD('${id_partido_vista}','${p2}');"> ${p2} </button>`;
 }
 
 //inserta ganador de partido en tabla partidos
@@ -40,12 +40,12 @@ async function winnerToBDD(id_partido, winner) {
 	regGetUser = res = await fetch("http://127.0.0.1:8080/" + winner + "/get-usuario").then(
 		(response) => response.json()
 	);
-	
-	resSetWinner = await fetch("http://127.0.0.1:8080/"+ id_partido+"/"+res[0].id_usuario+"/set-winner").then(
+
+	resSetWinner = await fetch("http://127.0.0.1:8080/" + id_partido + "/" + res[0].id_usuario + "/set-winner").then(
 		(response) => response.json()
 	);
-	
-	
+
+
 }
 
 
