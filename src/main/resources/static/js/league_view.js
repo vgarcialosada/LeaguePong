@@ -1,5 +1,6 @@
 async function partidos_liga(id_liga) {
-	res = await fetch("http://127.0.0.1:8080/" + id_liga + "/get-partidos").then(
+	console.log(id_liga);
+	res = await fetch("http://127.0.0.1:8080/" + id_liga + "/get-partidos-por-jugar").then(
 		(response) => response.json()
 	);
 
@@ -10,16 +11,19 @@ async function partidos_liga(id_liga) {
 	resplayer2 = await fetch("http://127.0.0.1:8080/" + res[0].id_jugador_2 + "/usuario").then(
 		(response) => response.json()
 	);
+	
 
 	for (i = 0; i < res.length; i++) {
+		idPartido=res[0].id_partido;
+		
 		//let player1Wins = player1Win(res[0].id_jugador_1, res[0].id_ganador);
 		//let winner = player1Wins ? resplayer1[0].nombre_usuario : resplayer2[0].nombre_usuario
 		//${res[i].id_partido} .
 		document.getElementById("partidos_liga").innerHTML += `<div class="card" style="color:white;">
-                    	<div id="partido${i}">  <h4>  
+                    	<div id="partido${idPartido}">  <h4>  
                     ${resplayer1[0].nombre_usuario} <img src='../img/r2.png' style='width:55px; height:30px;''"> <img src='../img/vs.jpg' style='width:55px; height:55px;''">  <img src='../img/r1.png' style='width:55px; height:30px;''">  ${resplayer2[0].nombre_usuario}
-                      <div id="whowon${i}"><br>  <button class="btn btn-secondary btn-sm" 
-                       onclick="setWinner(${i},'${resplayer1[0].nombre_usuario}','${resplayer2[0].nombre_usuario}'	)
+                      <div id="whowon${idPartido}"><br>  <button class="btn btn-secondary btn-sm" 
+                       onclick="setWinner(${idPartido},'${resplayer1[0].nombre_usuario}','${resplayer2[0].nombre_usuario}'	)
                        ">Ganador</button></h4>
                     </div>`;
 	}
@@ -44,11 +48,12 @@ async function winnerToBDD(id_partido, winner) {
 	resSetWinner = await fetch("http://127.0.0.1:8080/" + id_partido + "/" + res[0].id_usuario + "/set-winner").then(
 		(response) => response.json()
 	);
-
-
+	
+		partidoWinner = document.getElementById("whowon" + id_partido).innerHTML="GANADOR "+winner;
 }
 
 
-partidos_liga(8);
-//partidos_liga(localStorage.getItem("id_liga"));
+function deleteLeaugeId() { localStorage.removeItem("id_liga"); }
+
+partidos_liga(localStorage.getItem("id_liga"));
 

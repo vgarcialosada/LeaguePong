@@ -45,6 +45,27 @@ public class PartidoController {
 			return partidoArr;
 		}
 		
+	//GET DE PARTIDOS POR ID LIGA
+		@CrossOrigin(origins = "*", maxAge = 3600)
+			@GetMapping("{id_liga}/get-partidos-por-jugar")
+			public List<Partido> getPartidosToPlay(@PathVariable long id_liga) {
+				List<Partido> partidoArr = new ArrayList<Partido>();
+				String QUERY;
+				QUERY = "SELECT * FROM leaguepong.partidos where id_liga= " + id_liga +
+						" and id_ganador is null";
+				System.out.println(QUERY);
+				List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
+				for (Map<String, Object> result : results) {
+					Partido partido = new Partido();
+					partido.setId_partido(((BigInteger) result.get("ID_PARTIDO")).longValue());
+					partido.setId_jugador_1(((BigInteger) result.get("ID_JUGADOR_1")).longValue());
+					partido.setId_jugador_2(((BigInteger) result.get("ID_JUGADOR_2")).longValue());
+					partido.setId_jugador_2(((BigInteger) result.get("ID_JUGADOR_2")).longValue());
+					partidoArr.add(partido);
+				}
+				return partidoArr;
+			}
+		
 	// update de partido para asignar ganadorusuario medainte datos POST pasados por
 	@CrossOrigin(origins = "*", maxAge = 3600)
 	@GetMapping(value = "{partido_id}/{ganador_id}/set-winner")
