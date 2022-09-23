@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,700&family=Play&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,700&family=Play&display=swap");
 
 /* scrollbar width */
 ::-webkit-scrollbar {
@@ -36,16 +36,15 @@ video {
 body {
   position: relative;
   margin: 0;
-  color:#eeefe3;
-  font-family: 'Play', sans-serif;
+  color: #eeefe3;
+  font-family: "Play", sans-serif;
 }
-.titulo{
-  color:#f0fd71
+.titulo {
+  color: #f0fd71;
 }
-.container{
+.container {
   min-width: 30%;
   max-width: 40%;
-  
 }
 
 /*  estilo botones */
@@ -59,28 +58,27 @@ body {
   min-height: 40px;
   font-weight: 600;
 }
-.button1:hover{
+.button1:hover {
   background-color: #f0fd71;
 }
-.button1:focus{
+.button1:focus {
   border: none;
-  outline:white solid 3px;
+  outline: white solid 3px;
 }
 
 /*  estilo inputs */
-input{
+input {
   border-radius: 5px;
   border: 2px solid white;
   background-color: rgb(202, 198, 198);
-  
 }
-input:focus{
+input:focus {
   outline: none;
   border: 3px solid white;
 }
 
 /*  estilo "boton" logo */
-.hiddenlogo{
+.hiddenlogo {
   position: fixed;
   border-radius: 50%;
   background-color: none;
@@ -92,36 +90,33 @@ input:focus{
   z-index: 1000;
 }
 
-
 /*    MEDIAQUERYs */
 
 /*  estilos para android */
 
 @media only screen and (max-width: 800px) {
-
-/*  estilo fondo */
+  /*  estilo fondo */
   #fondoandroid {
-    display:inline;
-    
+    display: inline;
   }
- 
-/*  estilo body */
-  .container{
+
+  /*  estilo body */
+  .container {
     min-width: 60%;
-    margin-left:5vh;
+    margin-left: 5vh;
     max-width: 80%;
     max-width: 70%;
     margin-left: 15%;
   }
-   
-/*  estilo botones */
-.button1 {
-    padding:0px 0px ;
-}
 
-/*  estilo "boton" logo */
-  .hiddenlogo{
-    background-color: none ;
+  /*  estilo botones */
+  .button1 {
+    padding: 0px 0px;
+  }
+
+  /*  estilo "boton" logo */
+  .hiddenlogo {
+    background-color: none;
     width: 100px;
     height: 100px;
     margin-top: 9vh;
@@ -129,7 +124,7 @@ input:focus{
     font-size: small;
   }
 }
-  /* Glassmorphism card effect */
+/* Glassmorphism card effect */
 .card {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -138,6 +133,5 @@ input:focus{
   border: 1px solid rgba(255, 255, 255, 0.125);
   flex-direction: column;
   color: white;
+  min-width: 300px;
 }
-
-
