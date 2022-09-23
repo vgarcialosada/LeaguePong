@@ -4,7 +4,7 @@ async function display_all_leagues(){
   );
   
 
-      document.getElementById("display_leagues").innerHTML = `<h4> No hay ligas a las que puedas unirte </h4>`
+      //document.getElementById("display_leagues").innerHTML = `<h4> No hay ligas a las que puedas unirte </h4>`
   for (i = 0; i < res.length; i++) {
     let password = res[i].password
     let id_liga = res[i].id_liga
@@ -42,13 +42,13 @@ async function league_search() {
                     </div> <br><br>`;
   }
 }
-
+/*
 document.getElementById('searchInput').onkeydown = function(e) {
 	if (e.keyCode == 13) {
 		league_search();
 	}
 };
-
+*/
 display_all_leagues();
 
 // esta funcion es para cunado se toque el boton Unirse
