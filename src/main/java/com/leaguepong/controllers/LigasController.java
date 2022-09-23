@@ -30,29 +30,12 @@ public class LigasController {
 	public List<Liga> allLeagues(@PathVariable long id) {
 		List<Liga> ligaArr = new ArrayList<Liga>();
 		String QUERY;
-//		if (name == null && location == null) {
-			QUERY = "select distinct ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES\r\n"
+			QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES\r\n"
 					+ " from leaguepong.ligas inner join usuarios_ligas on ligas.id_liga = usuarios_ligas.id_liga\r\n"
-					+ " where ID_USUARIO != "+id+" and nombre not in\r\n"
+					+ " where usuarios_ligas.ID_USUARIO != "+id+" and nombre not in\r\n"
 					+ " (select nombre from ligas inner join usuarios_ligas on usuarios_ligas.id_liga = ligas.id_liga where id_usuario="+id+");";
-//		} else if (name != null && location == null) {
-//			QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
-//					+ " from leaguepong.ligas inner join leaguepong.usuarios_ligas on ligas.ID_LIGA"
-//					+ " = usuarios_ligas.ID_LIGA where NOMBRE LIKE \"%" + name + "%\" and ID_USUARIO != "+id+" and nombre not in\r\n"
-//					+ " (select nombre from ligas inner join usuarios_ligas on usuarios_ligas.id_liga = ligas.id_liga where id_usuario="+id+");";
-//		} else if (name == null && location != null) {
-//			QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
-//					+ " from leaguepong.ligas inner join leaguepong.usuarios_ligas on ligas.ID_LIGA"
-//					+ " = usuarios_ligas.ID_LIGA where UBICACION LIKE \"%" + location + "%\" and ID_USUARIO != "+id+" and nombre not in\r\n"
-//					+ " (select nombre from ligas inner join usuarios_ligas on usuarios_ligas.id_liga = ligas.id_liga where id_usuario="+id+");";
-//		} else {
-//			QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
-//					+ " from leaguepong.ligas inner join leaguepong.usuarios_ligas on ligas.ID_LIGA"
-//					+ " = usuarios_ligas.ID_LIGA where UBICACION LIKE \"%" + location + "%\" and NOMBRE LIKE \"%" + name
-//					+ "%\" and ID_USUARIO != "+id+" and nombre not in\r\n"
-//					+ " (select nombre from ligas inner join usuarios_ligas on usuarios_ligas.id_liga = ligas.id_liga where id_usuario="+id+");";
-//		}
 		
+		System.out.println(QUERY);
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
 			Liga liga = new Liga();
