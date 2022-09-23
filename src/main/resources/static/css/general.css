@@ -45,7 +45,7 @@ body {
 .container{
   min-width: 30%;
   max-width: 40%;
-  
+  font-size: 20px;  
 }
 
 /*  estilo botones */
@@ -107,11 +107,10 @@ input:focus{
  
 /*  estilo body */
   .container{
-    min-width: 60%;
+    min-width: 80%;
     margin-left:5vh;
     max-width: 80%;
     max-width: 70%;
-    margin-left: 15%;
   }
    
 /*  estilo botones */
@@ -138,6 +137,13 @@ input:focus{
   border: 1px solid rgba(255, 255, 255, 0.125);
   flex-direction: column;
   color: white;
+}
+
+/*  quitar azul de las a */
+
+a{
+  text-decoration:none;
+
 }
 
 
