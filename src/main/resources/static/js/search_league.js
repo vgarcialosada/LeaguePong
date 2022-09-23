@@ -11,7 +11,7 @@ async function display_all_leagues(){
     let jugadoresFetch= await fetch(`http://127.0.0.1:8080/usuarios/${id_liga}`).then(
       (response) => response.json()
     );
-    console.log(jugadoresFetch)
+    
     document.getElementById("display_leagues").innerHTML += `<div class="card">
 
                       <h2>${res[i].nombre}</h2>
