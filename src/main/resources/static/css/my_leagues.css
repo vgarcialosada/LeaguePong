@@ -12,15 +12,6 @@
   flex-direction: column;
   width: 30%;
 }
-.titles {
-  font-size: 50px;
-  font-weight: bold;
-  background-color: aqua;
-}
-.rows {
-  font-size: 25px;
-  background-color: azure;
-}
 #my_leagues2 {
 }
 @media only screen and (max-width: 768px) {
