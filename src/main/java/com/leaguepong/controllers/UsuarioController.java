@@ -65,6 +65,26 @@ public class UsuarioController {
 		return userArr;
 	}
 
+	
+	// get id usuario a partir de username y pwd
+	@CrossOrigin(origins = "*", maxAge = 3600)
+	@GetMapping("/{username}/get-usuario")
+	public List<Usuario> getUserIdByName(@PathVariable String username) {
+		int idUser;
+		List<Usuario> userArr = new ArrayList<Usuario>();
+		String QUERY;
+	
+		QUERY = "select ID_USUARIO from leaguepong.usuarios where NOMBRE_USUARIO = '" + username+ "';";
+		System.out.println(QUERY);
+		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
+		for (Map<String, Object> result : results) {
+			idUser = (int) ((BigInteger) result.get("ID_USUARIO")).longValue();
+			userArr = getUsuario(idUser);
+
+		}
+		return userArr;
+	}
+
 	// update de usuario medainte datos POST pasados por formulario !!!! pendiente
 	// pendiente encryptar nueva pwd
 	@CrossOrigin(origins = "*", maxAge = 3600)
