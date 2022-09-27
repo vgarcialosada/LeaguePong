@@ -4,7 +4,6 @@ async function display_all_leagues(){
     (response) => response.json()
   );
   
-
       //document.getElementById("display_leagues").innerHTML = `<h4> No hay ligas a las que puedas unirte </h4>`
   for (i = 0; i < res.length; i++) {
     let password = res[i].password
@@ -26,7 +25,7 @@ async function display_all_leagues(){
 
 async function league_search() {
 	let search=document.getElementById("searchInput").value
-  res = await fetch("http://127.0.0.1:8080/" + search + "/buscar-ligas").then(
+  res = await fetch("http://127.0.0.1:8080/" + search +"/"+ localStorage.getItem("id")+ "/buscar-ligas").then(
     (response) => response.json()
   );
   for (i = 0; i < res.length; i++) {
