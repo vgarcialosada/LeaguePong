@@ -34,7 +34,7 @@ async function league_search() {
  let jugadoresFetch= await fetch(`http://127.0.0.1:8080/usuarios/${id_liga}`).then(
       (response) => response.json()
     );
-    
+    console.log(jugadoresFetch.length);
        document.getElementById("display_leagues").innerHTML="<div></div>";
       document.getElementById("display_leagues").innerHTML += `<div class="card" style="text-align:center";">
                     <a style="color:#F0FD71;">  <h2 style="font-weight: bold  ;" >${res[i].nombre}</h2></a>
