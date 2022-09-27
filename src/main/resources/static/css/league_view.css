@@ -25,3 +25,21 @@
   max-width: 70px;
 }
 
+.posicionesHead{
+  background-color: black;
+  display:flex;
+  justify-content: space-between;
+}
+.cardPosiciones {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  color: white;
+  min-width: 300px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  
+}
