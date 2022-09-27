@@ -46,13 +46,11 @@
 <!--contenido-->
 
     <div class="container">
-      <h1 id="title">
-        NOMBRE
-      </h1>
+      <h1 id="title"></h1>
       <br />
       <div class="botones">
-      <button class="button1">Partidos pendientes</button>
-      <button class="button1">Clasificación</button>
+      <button class="button1" onclick="partidos_liga(localStorage.getItem('id_liga'))">Partidos pendientes</button>
+      <button class="button1" onclick="posiciones(localStorage.getItem('id_liga'))">Clasificación</button>
       <button class="button1 info_general" onclick="infoGeneral()">Informacion General</button>
     </div> <br>
     <div id="ver">
