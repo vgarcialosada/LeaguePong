@@ -133,9 +133,12 @@ input:focus {
   flex-direction: column;
   color: white;
   min-width: 300px;
-  width:100%;
+  padding-bottom: 5px;
 }
-
+.card .unirse{
+  max-width:40px;
+  align-self: center;
+}
 /*  quitar azul de las a */
 
 a:link, a:visited, a:active {
