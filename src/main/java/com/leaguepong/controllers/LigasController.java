@@ -24,8 +24,31 @@ public class LigasController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	
 	@CrossOrigin(origins = "*", maxAge = 3600)
+	@GetMapping("{id}/get-liga")
+	public List<Liga> getLigaById(@PathVariable long id) {
+		final String QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
+				+ " from leaguepong.ligas where ID_LIGA =" + id + "; ";
 
+		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
+		List<Liga> ligaArr = new ArrayList<Liga>();
+		for (Map<String, Object> result : results) {
+			Liga liga = new Liga();
+			liga.setId_liga(((BigInteger) result.get("ID_LIGA")).longValue());
+			liga.setNombre((String) result.get("NOMBRE"));
+			liga.setPassword((String) result.get("PASSWORD"));
+			liga.setReglas((String) result.get("REGLAS"));
+			liga.setUbicacion((String) result.get("UBICACION"));
+			liga.setNumero_jugadores((Integer) result.get("NUMERO_JUGADORES"));
+			ligaArr.add(liga);
+
+		}
+		return ligaArr;
+	}
+	
+	
+	@CrossOrigin(origins = "*", maxAge = 3600)
 	@GetMapping("{id}/todas-ligas")
 	public List<Liga> allLeagues(@PathVariable long id) {
 		List<Liga> ligaArr = new ArrayList<Liga>();
