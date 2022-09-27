@@ -53,7 +53,7 @@ public class LigasController {
 	public List<Liga> allLeagues(@PathVariable long id) {
 		List<Liga> ligaArr = new ArrayList<Liga>();
 		String QUERY;
-			QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES\r\n"
+			QUERY = "select distinct ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES\r\n"
 					+ " from leaguepong.ligas inner join usuarios_ligas on ligas.id_liga = usuarios_ligas.id_liga\r\n"
 					+ " where usuarios_ligas.ID_USUARIO != "+id+" and nombre not in\r\n"
 					+ " (select nombre from ligas inner join usuarios_ligas on usuarios_ligas.id_liga = ligas.id_liga where id_usuario="+id+");";
@@ -154,13 +154,11 @@ public class LigasController {
 	}
 	
 	@CrossOrigin(origins = "*", maxAge = 3600)
-	@GetMapping("{search}/buscar-ligas")
-	public List<Liga> searchLeague(@PathVariable String search) {
-		final String QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
+	@GetMapping("{search}/{id}/buscar-ligas")
+	public List<Liga> searchLeague(@PathVariable String search, @PathVariable long id) {
+		final String QUERY = "select distinct ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
 				+ " from leaguepong.ligas inner join leaguepong.usuarios_ligas "
-				+ "on ligas.ID_LIGA = usuarios_ligas.ID_LIGA where NOMBRE LIKE '%" + search + "%' or UBICACION LIKE '%" + search + "%';";
-	
-		
+				+ "on ligas.ID_LIGA = usuarios_ligas.ID_LIGA where NOMBRE LIKE '%" + search + "%' or UBICACION LIKE '%" + search + "%' and nombre not in (select nombre from ligas inner join usuarios_ligas on usuarios_ligas.id_liga = ligas.id_liga where id_usuario="+id+");";
 	
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		List<Liga> ligaArr = new ArrayList<Liga>();

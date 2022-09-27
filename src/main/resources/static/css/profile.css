@@ -6,9 +6,10 @@
 }
 .h3 {
   display: inline-block;
+  color: #f0fd71;
 }
 .mi {
-  color: #f0fd71;
+  color: white;
 }
 
 .card {
