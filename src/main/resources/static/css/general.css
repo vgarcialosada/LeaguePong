@@ -133,6 +133,7 @@ input:focus {
   flex-direction: column;
   color: white;
   min-width: 300px;
+  width:100%;
 }
 
 /*  quitar azul de las a */
