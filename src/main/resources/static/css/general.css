@@ -133,8 +133,12 @@ input:focus {
   flex-direction: column;
   color: white;
   min-width: 300px;
+  padding-bottom: 5px;
 }
-
+.card button{
+  max-width:40px;
+  align-self: center;
+}
 /*  quitar azul de las a */
 
 a:link, a:visited, a:active {
