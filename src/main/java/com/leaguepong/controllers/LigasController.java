@@ -158,7 +158,8 @@ public class LigasController {
 	public List<Liga> searchLeague(@PathVariable String search) {
 		final String QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
 				+ " from leaguepong.ligas inner join leaguepong.usuarios_ligas "
-				+ "on ligas.ID_LIGA = usuarios_ligas.ID_LIGA where NOMBRE LIKE '%" + search + "%'; ";
+				+ "on ligas.ID_LIGA = usuarios_ligas.ID_LIGA where NOMBRE LIKE '%" + search + "%' or UBICACION LIKE '%" + search + "%';";
+	
 		
 	
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);

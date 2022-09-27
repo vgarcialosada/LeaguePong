@@ -4,7 +4,7 @@ document.getElementById('nombre_usuario').onkeydown = function(e) {
 	}
 };
 
-document.getElementById('password').onkeydown = function(e) {
+document.getElementById('pass	word').onkeydown = function(e) {
 	if (e.keyCode == 13) {
 		entrar();
 	}
