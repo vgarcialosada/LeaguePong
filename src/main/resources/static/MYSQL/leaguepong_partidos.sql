@@ -27,27 +27,17 @@ CREATE TABLE `partidos` (
   `ID_JUGADOR_1` bigint unsigned DEFAULT NULL,
   `ID_JUGADOR_2` bigint unsigned DEFAULT NULL,
   `ID_GANADOR` bigint unsigned DEFAULT NULL,
-<<<<<<< HEAD
   `ID_LIGA` bigint unsigned DEFAULT NULL,
-=======
->>>>>>> 30ae17e5541a150412b584bc6107dbec36da2484
   PRIMARY KEY (`ID_PARTIDO`),
   KEY `ID_JUGADOR_1` (`ID_JUGADOR_1`),
   KEY `ID_JUGADOR_2` (`ID_JUGADOR_2`),
   KEY `ID_GANADOR` (`ID_GANADOR`),
-<<<<<<< HEAD
   KEY `ID_LIGA` (`ID_LIGA`),
   CONSTRAINT `partidos_ibfk_1` FOREIGN KEY (`ID_JUGADOR_1`) REFERENCES `usuarios` (`ID_USUARIO`),
   CONSTRAINT `partidos_ibfk_2` FOREIGN KEY (`ID_JUGADOR_2`) REFERENCES `usuarios` (`ID_USUARIO`),
   CONSTRAINT `partidos_ibfk_3` FOREIGN KEY (`ID_GANADOR`) REFERENCES `usuarios` (`ID_USUARIO`),
   CONSTRAINT `partidos_ibfk_4` FOREIGN KEY (`ID_LIGA`) REFERENCES `ligas` (`ID_LIGA`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-=======
-  CONSTRAINT `partidos_ibfk_1` FOREIGN KEY (`ID_JUGADOR_1`) REFERENCES `usuarios` (`ID_USUARIO`),
-  CONSTRAINT `partidos_ibfk_2` FOREIGN KEY (`ID_JUGADOR_2`) REFERENCES `usuarios` (`ID_USUARIO`),
-  CONSTRAINT `partidos_ibfk_3` FOREIGN KEY (`ID_GANADOR`) REFERENCES `usuarios` (`ID_USUARIO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
->>>>>>> 30ae17e5541a150412b584bc6107dbec36da2484
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,10 +46,7 @@ CREATE TABLE `partidos` (
 
 LOCK TABLES `partidos` WRITE;
 /*!40000 ALTER TABLE `partidos` DISABLE KEYS */;
-<<<<<<< HEAD
 INSERT INTO `partidos` VALUES (1,1,2,1,NULL);
-=======
->>>>>>> 30ae17e5541a150412b584bc6107dbec36da2484
 /*!40000 ALTER TABLE `partidos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -72,8 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
 -- Dump completed on 2022-09-06 13:34:52
-=======
--- Dump completed on 2022-09-06 12:18:56
->>>>>>> 30ae17e5541a150412b584bc6107dbec36da2484
