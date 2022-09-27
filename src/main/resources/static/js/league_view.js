@@ -1,8 +1,10 @@
-async function partidos_liga(id_liga) {
-  console.log(id_liga);
-  res = await fetch(
-    "http://127.0.0.1:8080/" + id_liga + "/get-partidos-por-jugar"
+async function nombre (id_liga){
+  nombreLiga = await fetch(
+    "http://127.0.0.1:8080/" + id_liga + "/get-liga"
   ).then((response) => response.json());
+  document.getElementById("title").innerHTML=nombreLiga[0].nombre
+}
+async function partidos_liga(id_liga) {
   res = await fetch(
     "http://127.0.0.1:8080/" + id_liga + "/get-partidos-por-jugar"
   ).then((response) => response.json());
@@ -17,9 +19,7 @@ async function partidos_liga(id_liga) {
     ).then((response) => response.json());
     idPartido = res[i].id_partido;
 
-    //let player1Wins = player1Win(res[0].id_jugador_1, res[0].id_ganador);
-    //let winner = player1Wins ? resplayer1[0].nombre_usuario : resplayer2[0].nombre_usuario
-    //${res[i].id_partido} .
+    
     document.getElementById(
       "partidos_liga"
     ).innerHTML += `<div class="card" style="color:white;">
@@ -63,4 +63,13 @@ function deleteLeaugeId() {
   localStorage.removeItem("id_liga");
 }
 
-partidos_liga(localStorage.getItem("id_liga"));
+nombre(localStorage.getItem("id_liga"));
+
+async function posiciones(id_liga) {
+  res = await fetch(
+    "http://127.0.0.1:8080/usuarios/" + id_liga
+  ).then((response) => response.json());
+
+  for (i = 0; i < res.length; i++) {
+  }
+}

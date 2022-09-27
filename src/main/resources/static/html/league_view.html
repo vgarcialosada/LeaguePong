@@ -49,9 +49,9 @@
       <h1 id="title"></h1>
       <br />
       <div class="botones">
-      <button class="button1">Partidos pendientes</button>
-      <button class="button1">Clasificación</button>
-      <button class="info_general" onclick="infoGeneral()">Informacion General</button>
+      <button class="button1" onclick="partidos_liga(localStorage.getItem('id_liga'))">Partidos pendientes</button>
+      <button class="button1" onclick="posiciones(localStorage.getItem('id_liga'))">Posiciones</button>
+      <button class="info_general button1" onclick="infoGeneral()">Informacion General</button>
     </div> <br>
     <div id="ver">
     <div id="partidos_liga">
