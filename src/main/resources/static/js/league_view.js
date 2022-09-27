@@ -3,6 +3,9 @@ async function partidos_liga(id_liga) {
   res = await fetch(
     "http://127.0.0.1:8080/" + id_liga + "/get-partidos-por-jugar"
   ).then((response) => response.json());
+  res = await fetch(
+    "http://127.0.0.1:8080/" + id_liga + "/get-partidos-por-jugar"
+  ).then((response) => response.json());
 
   for (i = 0; i < res.length; i++) {
     resplayer1 = await fetch(
