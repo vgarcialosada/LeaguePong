@@ -135,7 +135,7 @@ input:focus {
   min-width: 300px;
   padding-bottom: 5px;
 }
-.card button{
+.card .unirse{
   max-width:40px;
   align-self: center;
 }

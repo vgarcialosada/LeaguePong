@@ -17,7 +17,7 @@ async function display_all_leagues(){
                       <h4> <a style="color:#F0FD71;"> Ubicación : </a> ${res[i].ubicacion} </h4>
                       <h4> <a style="color:#F0FD71;"> Participantes :  </a>   ${jugadoresFetch.length==0?1:jugadoresFetch.length}/${res[i].numero_jugadores}</h4>
                       <h4> <a style="color:#F0FD71;"> Reglas :  </a> ${res[i].reglas}</h4>
-                      <button class="button1" onclick="joinLeague(${id_liga}, '${password}')">Unirse</button>
+                      <button class="button1 unirse" onclick="joinLeague(${id_liga}, '${password}')">Unirse</button>
                     </div> <br><br>`;
   }
 }
@@ -41,7 +41,7 @@ async function league_search() {
                       <h4> <a style="color:#F0FD71;"> Ubicación : </a> ${res[i].ubicacion} </h4>
                       <h4> <a style="color:#F0FD71;"> Participantes :  </a>   ${jugadoresFetch.length==0?1:jugadoresFetch.length}/${res[i].numero_jugadores}</h4>
                       <h4> <a style="color:#F0FD71;"> Reglas :  </a> ${res[i].reglas}</h4>
-                      <button class="button1" onclick="joinLeague(${id_liga}, '${password}')">Unirse</button>
+                      <button class="button1 unirse" onclick="joinLeague(${id_liga}, '${password}')">Unirse</button>
                     </div> <br><br>`;
   }
 }
