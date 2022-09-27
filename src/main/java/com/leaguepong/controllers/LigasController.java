@@ -57,9 +57,7 @@ public class LigasController {
 					+ " from leaguepong.ligas inner join usuarios_ligas on ligas.id_liga = usuarios_ligas.id_liga\r\n"
 					+ " where usuarios_ligas.ID_USUARIO != "+id+" and nombre not in\r\n"
 					+ " (select nombre from ligas inner join usuarios_ligas on usuarios_ligas.id_liga = ligas.id_liga where id_usuario="+id+");";
-		
-		System.out.println(QUERY);
-		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
+				List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
 			Liga liga = new Liga();
 			liga.setId_liga(((BigInteger) result.get("ID_LIGA")).longValue());
