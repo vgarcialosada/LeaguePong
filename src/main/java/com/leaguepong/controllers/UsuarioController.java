@@ -75,7 +75,6 @@ public class UsuarioController {
 		String QUERY;
 	
 		QUERY = "select ID_USUARIO from leaguepong.usuarios where NOMBRE_USUARIO = '" + username+ "';";
-		System.out.println(QUERY);
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
 			idUser = (int) ((BigInteger) result.get("ID_USUARIO")).longValue();
@@ -95,7 +94,6 @@ public class UsuarioController {
 		// verificacion si usuario o mail ya existen
 		// if (userAlreadyExists(user.getNombre_usuario(), user.getMail())) {
 		user.setId_usuario(id);
-		System.out.println(user);
 		String QueryUpdateUser = setUpdateString(user);
 		try {
 			jdbcTemplate.execute(QueryUpdateUser);
@@ -132,7 +130,6 @@ public class UsuarioController {
 		}
 
 		QUERYupdateUser += "where id_usuario = " + usuario.getId_usuario() + ";";
-		System.out.println(QUERYupdateUser);
 		return QUERYupdateUser;
 	}
 
