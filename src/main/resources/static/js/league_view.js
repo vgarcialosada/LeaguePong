@@ -123,8 +123,8 @@ async function administrarLiga(){
   <div>UBICACION : <input type="text" id="ubicacion" value="${liga[0].ubicacion}"/></div> </br>
   <div>NUMERO DE JUGADORES  : <input type="number" id="numero_de_jugadores" value="${liga[0].numero_jugadores}"/></div></br>
   <button class="button1" onclick="guardarCambios()">Guardar Cambios</button></br>
-  <button class="button1" style="background-color: red;" onclick="eliminarLiga()">Eliminar Liga</button><div id="eliminar"></div>
-            </div>`;
+  <button class="button1" style="background-color: red;" onclick="eliminarLiga()" id="eliminarLiga">Eliminar Liga</button><div id="eliminar"></div>
+   </div>`;
 
 
 }
@@ -150,9 +150,12 @@ async function guardarCambios () {
   window.location.reload()
 }
 
-function eliminarLiga(){
-  document.getElementById("eliminar").innerHTML=``
-  fetch("http://127.0.0.1:8080/eliminar-liga" + localStorage.getItem("id_liga"), {
-              method: "POST"})
-
+async function eliminarLiga(){
+  document.getElementById("eliminarLiga").innerHTML=`<div onclick="eliminar()">Confirmar</div>`
+  
+}
+async function eliminar(){
+  await fetch("http://127.0.0.1:8080/eliminar-liga/" + localStorage.getItem("id_liga"), {
+              method: "DELETE"})
+              window.location.href = "http://127.0.0.1:5500/src/main/resources/static/html/my_leagues.html"
 }
