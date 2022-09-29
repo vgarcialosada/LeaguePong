@@ -114,7 +114,6 @@ public class LigasController {
 		String querySetUserToleague = "insert into usuarios_ligas set id_usuario = " + id
 				+ ", id_liga=(select id_liga from ligas where nombre ='" + liga.getNombre() + "'), is_admin = true;";
 
-		System.out.println(queryCreateLeague);
 		try {
 			jdbcTemplate.execute(queryCreateLeague);
 			jdbcTemplate.execute(querySetUserToleague);
