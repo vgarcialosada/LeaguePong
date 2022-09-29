@@ -53,7 +53,6 @@ public class PartidoController {
 				String QUERY;
 				QUERY = "SELECT * FROM leaguepong.partidos where id_liga= " + id_liga +
 						" and id_ganador is null";
-				System.out.println(QUERY);
 				List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 				for (Map<String, Object> result : results) {
 					Partido partido = new Partido();
@@ -75,7 +74,6 @@ public class PartidoController {
 		QueryupdateWinner = "update leaguepong.partidos set id_ganador= " + ganador_id + " where id_partido="
 				+ partido_id;
 		
-		System.out.println(QueryupdateWinner);
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode objectNode = mapper.createObjectNode();
 		try {

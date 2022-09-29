@@ -25,7 +25,6 @@ public class PasswordController {
 		ObjectNode objectNode = mapper.createObjectNode();
 		String newPwd=encryptPassword(password);
 		String QUERYupdateUser = "update LEAGUEPONG.USUARIOS set PASSWORD= '"+newPwd+"' where id_usuario= "+id+";";
-		System.out.println(QUERYupdateUser);
 				try {
 				jdbcTemplate.execute(QUERYupdateUser);
 				objectNode.put("message", "usuario actualizado");
