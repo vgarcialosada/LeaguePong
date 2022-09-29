@@ -1,11 +1,14 @@
 package com.leaguepong.entities;
 
 public class Admin extends Usuario{
-	private String id_liga;
+	private boolean admin;
 
-	public Admin(int id_usuario, String nombre_usuario, String password, String mail, String localidad, int nivel, Liga ligaAdmin) {
-		super(id_usuario, nombre_usuario, password, mail, localidad, nivel);
-		// TODO Auto-generated constructor stub
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 }

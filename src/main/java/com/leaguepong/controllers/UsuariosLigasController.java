@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.leaguepong.entities.Admin;
 import com.leaguepong.entities.UsuarioLiga;
 
 @RestController
@@ -101,5 +102,23 @@ public class UsuariosLigasController {
 		return objectNode;
 	}
 	
- 
+	@CrossOrigin(origins="*", maxAge = 3600)
+	//trae el estado de admin de una persona
+	@GetMapping("admin-liga/{id}/{id_liga}")
+	public List<Admin> usersLeague(@PathVariable long id, @PathVariable long id_liga) {
+		final String QUERY="select usuarios_ligas.IS_ADMIN as ADMIN from usuarios_ligas "
+				+ "inner join usuarios on usuarios_ligas.ID_USUARIO = usuarios.ID_USUARIO "
+				+ "where usuarios_ligas.ID_LIGA = "+id_liga+" and usuarios_ligas.ID_USUARIO = "+id+";";
+		
+		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
+		List<Admin> adminLigaArr = new ArrayList<Admin>();
+		
+		for(Map<String, Object> usuario : results) {
+			Admin admin = new Admin();
+			admin.setNombre_usuario((String) usuario.get("NOMBRE"));
+			admin.setAdmin((boolean) usuario.get("ADMIN"));
+			adminLigaArr.add(admin);
+		}
+		return adminLigaArr;
+	}
 }

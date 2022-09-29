@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -173,5 +174,28 @@ public class LigasController {
 		}
 		return ligaArr;
 	}
+	
+	/*
+	 * Crea una liga a partir de un objeto Liga pasado desde el front Añade el
+	 * usuario logeado a la liga y lo hace admin
+	 */
+	@CrossOrigin(origins = "*", maxAge = 3600)
+	@PostMapping("{id_liga}/modificar-liga")
+	public ObjectNode modifyLeague(@PathVariable long id_liga, @RequestBody Liga liga) {
 
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode objectNode = mapper.createObjectNode();
+		String queryModifyLeague = "update ligas set NOMBRE = \"" + liga.getNombre() + "\", REGLAS= \"" + liga.getReglas() + "\", UBICACION = \"" + liga.getUbicacion()
+				+ "\", NUMERO_JUGADORES=" + liga.getNumero_jugadores() + " where id_liga = "+id_liga+";";
+		System.out.println(queryModifyLeague);
+		try {
+			jdbcTemplate.execute(queryModifyLeague);
+			objectNode.put("message", "Liga creada correctamente");
+		} catch (Exception e) {
+			objectNode.put("message", "Error al crear liga");
+			objectNode.put("error", e.toString());
+		}
+
+		return objectNode;
+	}
 }

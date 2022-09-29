@@ -5,6 +5,15 @@ async function nombre(id_liga) {
   document.getElementById("title").innerHTML = nombreLiga[0].nombre;
 }
 nombre(localStorage.getItem("id_liga"));
+async function admin(id, id_liga) {
+  admin = await fetch(
+    `http://127.0.0.1:8080/admin-liga/${id}/${id_liga}`
+  ).then((response) => response.json());
+  if(admin[0].admin == true){
+    document.getElementById("botones").innerHTML +=`<button class="button1" onclick="administrarLiga()" >Administrar Liga</button>`
+  }
+}
+admin(localStorage.getItem("id"), localStorage.getItem("id_liga"));
 
 async function partidos_liga(id_liga) {
   document.getElementById("partidos_liga").innerHTML = `<div></div>`;
@@ -96,4 +105,46 @@ async function posiciones(id_liga) {
     <div>${posicionesLiga[i].puntos}</div>
   </div>`;
   }
+}
+
+async function administrarLiga(){
+  document.getElementById(
+    "partidos_liga"
+  ).innerHTML = `<div></div>`;
+
+  liga = await fetch(
+    "http://127.0.0.1:8080/"+localStorage.getItem('id_liga')+"/get-liga"
+  ).then((response) => response.json());
+  document.getElementById(
+    "partidos_liga"
+  ).innerHTML = `<div class="card" style="color:white;align-items:center;"></br>
+  <div>NOMBRE : <input id="nombreLiga" type="text" value="${liga[0].nombre}"/></div> </br>
+  <div><div>REGLAS : </div> <textarea id="reglas" style="width:50%;" >${liga[0].reglas}</textarea></div></br>
+  <div>UBICACION : <input type="text" id="ubicacion" value="${liga[0].ubicacion}"/></div> </br>
+  <div>NUMERO DE JUGADORES  : <input type="number" id="numero_de_jugadores" value="${liga[0].numero_jugadores}"/></div></br>
+  <button class="button1" onclick="guardarCambios()">Guardar Cambios</button>
+            </div>`;
+
+
+}
+
+async function guardarCambios () {
+ await fetch("http://127.0.0.1:8080/" + localStorage.getItem("id_liga") + "/modificar-liga", {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+          
+          id:localStorage.getItem("id_liga"),
+                nombre: document.getElementById("nombreLiga").value,
+                password:"",
+                reglas: reglas.value,
+                ubicacion: ubicacion.value,
+                numero_jugadores: numero_de_jugadores.value}),
+              }
+  )
+
+  window.location.reload()
 }
