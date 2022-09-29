@@ -1,3 +1,5 @@
+
+
 .container{
     display: flex;
     flex-direction: column;
@@ -42,4 +44,12 @@
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   
+}
+@media only screen and (max-width: 800px) {
+
+  .container{
+    margin-top: 21vh;
+    max-width: 80%;
+    min-width: 70%;
+  }
 }
