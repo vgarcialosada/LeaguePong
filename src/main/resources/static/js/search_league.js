@@ -35,7 +35,7 @@ async function league_search() {
       (response) => response.json()
     );
     console.log(jugadoresFetch.length);
-       document.getElementById("display_leagues").innerHTML="<div></div>";
+      document.getElementById("display_leagues").innerHTML="<div></div>";
       document.getElementById("display_leagues").innerHTML += `<div class="card" style="text-align:center";">
                     <a style="color:gold;">  <h2 style="font-weight: bold  ;" >${res[i].nombre}</h2></a>
                       <h4> <a style="color:#F0FD71;"> Ubicación : </a> ${res[i].ubicacion} </h4>

@@ -9,9 +9,8 @@
     margin-top: 21vh;
       margin-left: 3vh;
       max-width: 80%;
-  
     }
     .titulo{
-        font-size:medium;
+        max-width: 80%;
     }
 }
