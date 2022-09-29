@@ -24,6 +24,7 @@ async function display_all_leagues() {
 
 
 async function league_search() {
+<<<<<<< HEAD
 	let search = document.getElementById("searchInput").value
 	res = await fetch("http://127.0.0.1:8080/" + search + "/" + localStorage.getItem("id") + "/buscar-ligas").then(
 		(response) => response.json()
@@ -36,6 +37,21 @@ async function league_search() {
 		);
 		document.getElementById("display_leagues").innerHTML = "<div></div>";
 		document.getElementById("display_leagues").innerHTML += `<div class="card"   style="text-align:center;">
+=======
+	let search=document.getElementById("searchInput").value
+  res = await fetch("http://127.0.0.1:8080/" + search +"/"+ localStorage.getItem("id")+ "/buscar-ligas").then(
+    (response) => response.json()
+  );
+  for (i = 0; i < res.length; i++) {
+    let password = res[i].password
+    let id_liga = res[i].id_liga
+ let jugadoresFetch= await fetch(`http://127.0.0.1:8080/usuarios/${id_liga}`).then(
+      (response) => response.json()
+    );
+    console.log(jugadoresFetch.length);
+      document.getElementById("display_leagues").innerHTML="<div></div>";
+      document.getElementById("display_leagues").innerHTML += `<div class="card" style="text-align:center";">
+>>>>>>> f217c9b34952323fa748ba593404aff0c276d4dc
                     <a style="color:gold;">  <h2 style="font-weight: bold  ;" >${res[i].nombre}</h2></a>
                       <h4> <a style="color:#F0FD71;"> Ubicación : </a> ${res[i].ubicacion} </h4>
                       <h4> <a style="color:#F0FD71;"> Participantes :  </a>   ${jugadoresFetch.length == 0 ? 1 : jugadoresFetch.length}/${res[i].numero_jugadores}</h4>
