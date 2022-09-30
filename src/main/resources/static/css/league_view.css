@@ -25,7 +25,11 @@
 .button1{
   max-width: 70px;
 }
-
+.posicionesHead{
+  background-color: black;
+  display:flex;
+  justify-content: space-between;
+}
 .cardPosiciones {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
