@@ -30,7 +30,7 @@ public class PartidoController {
 		public List<Partido> getPartidos(@PathVariable long id_liga) {
 			List<Partido> partidoArr = new ArrayList<Partido>();
 			String QUERY;
-			QUERY = "SELECT * FROM leaguepong.partidos where id_liga= " + id_liga;
+			QUERY = "SELECT * FROM partidos where id_liga= " + id_liga;
 			
 			List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 			for (Map<String, Object> result : results) {
@@ -51,7 +51,7 @@ public class PartidoController {
 			public List<Partido> getPartidosToPlay(@PathVariable long id_liga) {
 				List<Partido> partidoArr = new ArrayList<Partido>();
 				String QUERY;
-				QUERY = "SELECT * FROM leaguepong.partidos where id_liga= " + id_liga +
+				QUERY = "SELECT * FROM partidos where id_liga= " + id_liga +
 						" and id_ganador is null";
 				List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 				for (Map<String, Object> result : results) {
@@ -71,7 +71,7 @@ public class PartidoController {
 	public ObjectNode setwinner(@PathVariable(required = false, name = "partido_id") long partido_id,
 			@PathVariable(required = false, name = "ganador_id") long ganador_id) {
 		String QueryupdateWinner;
-		QueryupdateWinner = "update leaguepong.partidos set id_ganador= " + ganador_id + " where id_partido="
+		QueryupdateWinner = "update partidos set id_ganador= " + ganador_id + " where id_partido="
 				+ partido_id;
 		
 		ObjectMapper mapper = new ObjectMapper();

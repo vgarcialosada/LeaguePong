@@ -1,5 +1,5 @@
-function updateProfile() {
-    res = fetch("http://127.0.0.1:8080/" + localStorage.getItem("id") + "/update_usuario", {
+async function updateProfile() {
+    res = await fetch("http://127.0.0.1:8080/" + localStorage.getItem("id") + "/update_usuario", {
       method: "POST",
       headers: {
         Accept: "application/json",
