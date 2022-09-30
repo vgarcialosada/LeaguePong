@@ -55,7 +55,7 @@ public class LigasController {
 		List<Liga> ligaArr = new ArrayList<Liga>();
 		String QUERY;
 			QUERY = "select distinct ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES\r\n"
-					+ " from leaguepong.ligas inner join usuarios_ligas on ligas.id_liga = usuarios_ligas.id_liga\r\n"
+					+ " from ebdb.ligas inner join usuarios_ligas on ligas.id_liga = usuarios_ligas.id_liga\r\n"
 					+ " where usuarios_ligas.ID_USUARIO != "+id+" and nombre not in\r\n"
 					+ " (select nombre from ligas inner join usuarios_ligas on usuarios_ligas.id_liga = ligas.id_liga where id_usuario="+id+");";
 				List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
@@ -155,7 +155,7 @@ public class LigasController {
 	@GetMapping("{search}/{id}/buscar-ligas")
 	public List<Liga> searchLeague(@PathVariable String search, @PathVariable long id) {
 		final String QUERY = "select distinct ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
-				+ " from leaguepong.ligas inner join leaguepong.usuarios_ligas "
+				+ " from ebdb.ligas inner join ebdb.usuarios_ligas "
 				+ "on ligas.ID_LIGA = usuarios_ligas.ID_LIGA where NOMBRE LIKE '%" + search + "%' or UBICACION LIKE '%" + search + "%' and nombre not in (select nombre from ligas inner join usuarios_ligas on usuarios_ligas.id_liga = ligas.id_liga where id_usuario="+id+");";
 	
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);

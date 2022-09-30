@@ -67,7 +67,7 @@ async function joinLeague(id_liga, password) {
 async function joinLeagueWithId(id_liga,password){
 	inputPassword=document.getElementById("joinLeague"+id_liga).value;
 	if (inputPassword == password) {
-		res = fetch(`http://127.0.0.1:8080/add-usuario/${id_liga}/${localStorage.getItem("id")}`, {
+		res = await fetch(`http://127.0.0.1:8080/add-usuario/${id_liga}/${localStorage.getItem("id")}`, {
 			method: "POST"
 		});
 		window.location.reload()

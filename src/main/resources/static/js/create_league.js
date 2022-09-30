@@ -1,5 +1,5 @@
-function create_league() {
-    res = fetch("http://127.0.0.1:8080/" + localStorage.getItem("id") + "/crear-liga", {
+async function create_league() {
+    res = await fetch("http://127.0.0.1:8080/" + localStorage.getItem("id") + "/crear-liga", {
       method: "POST",
       headers: {
         Accept: "application/json",
