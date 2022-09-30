@@ -30,9 +30,10 @@
 
     .container{
       margin-top: 21vh;
-      
+      margin-left: 7vh;
+      max-width: 70%;
+      min-width: 70%;
       min-height: 65%;
-      margin-left: 10px;
     }
   
   }
