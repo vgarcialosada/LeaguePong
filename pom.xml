@@ -15,6 +15,25 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<!-- Build an executable JAR -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.mypackage.MyClass</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -42,11 +61,11 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<!--<dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency>-->
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -84,7 +103,7 @@
 	
 	</dependencies>
 
-	<build>
+	<!--<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -101,11 +120,39 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.1.0</version> <!--$NO-MVN-MAN-VER$-->
+				<version>3.1.0</version> <!-$NO-MVN-MAN-VER$
 
 			</plugin>
 		</plugins>
 
-	</build>
+	</build>-->
+
+	<!--<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<finalName>ServiceCreate</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+					<archive>
+						<manifest>
+							<mainClass>com.svt.optimoo.App</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>-->
 
 </project>
