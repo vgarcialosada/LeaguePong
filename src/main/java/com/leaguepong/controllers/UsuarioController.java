@@ -96,8 +96,10 @@ public class UsuarioController {
 		user.setId_usuario(id);
 		String QueryUpdateUser = setUpdateString(user);
 		try {
+			System.out.println(QueryUpdateUser);
 			jdbcTemplate.execute(QueryUpdateUser);
 			objectNode.put("message", "usuario actualizado");
+			System.out.println(QueryUpdateUser);
 		} catch (Exception e) {
 			objectNode.put("message", "Error al actualizar usuario");
 			objectNode.put("error", e.toString());
@@ -112,7 +114,7 @@ public class UsuarioController {
 	public String setUpdateString(Usuario usuario) {
 		String QUERYupdateUser = "";
 		if (usuario != null) {
-			QUERYupdateUser += "update USUARIOS set ";
+			QUERYupdateUser += "update ebdb.usuarios set ";
 			if (usuario.getNombre_usuario() != null) {
 				QUERYupdateUser += "NOMBRE_USUARIO = " + "'" + usuario.getNombre_usuario() + "',";
 			}
