@@ -30,7 +30,7 @@ public class UsuarioController {
 	public List<Usuario> getUsuario(@PathVariable int id) {
 		List<Usuario> userArr = new ArrayList<Usuario>();
 		String QUERY;
-		QUERY = "select ID_USUARIO, NOMBRE_USUARIO, PASSWORD, MAIL, LOCALIDAD,  NIVEL from leaguepong.usuarios where id_usuario = "
+		QUERY = "select ID_USUARIO, NOMBRE_USUARIO, PASSWORD, MAIL, LOCALIDAD,  NIVEL from ebdb.usuarios where id_usuario = "
 				+ id;
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
@@ -54,7 +54,7 @@ public class UsuarioController {
 		List<Usuario> userArr = new ArrayList<Usuario>();
 		String QUERY;
 		String encryptedPwd = PasswordController.encryptPassword(password);
-		QUERY = "select ID_USUARIO from leaguepong.usuarios where NOMBRE_USUARIO = \"" + username
+		QUERY = "select ID_USUARIO from ebdb.usuarios where NOMBRE_USUARIO = \"" + username
 				+ "\" and PASSWORD = \"" + encryptedPwd + "\";";
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
@@ -74,7 +74,7 @@ public class UsuarioController {
 		List<Usuario> userArr = new ArrayList<Usuario>();
 		String QUERY;
 	
-		QUERY = "select ID_USUARIO from leaguepong.usuarios where NOMBRE_USUARIO = '" + username+ "';";
+		QUERY = "select ID_USUARIO from ebdb.usuarios where NOMBRE_USUARIO = '" + username+ "';";
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		for (Map<String, Object> result : results) {
 			idUser = (int) ((BigInteger) result.get("ID_USUARIO")).longValue();
@@ -112,7 +112,7 @@ public class UsuarioController {
 	public String setUpdateString(Usuario usuario) {
 		String QUERYupdateUser = "";
 		if (usuario != null) {
-			QUERYupdateUser += "update LEAGUEPONG.USUARIOS set ";
+			QUERYupdateUser += "update ebdb.usuarios set ";
 			if (usuario.getNombre_usuario() != null) {
 				QUERYupdateUser += "NOMBRE_USUARIO = " + "'" + usuario.getNombre_usuario() + "',";
 			}

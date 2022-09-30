@@ -30,7 +30,7 @@ public class LigasController {
 	@GetMapping("{id}/get-liga")
 	public List<Liga> getLigaById(@PathVariable long id) {
 		final String QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
-				+ " from leaguepong.ligas where ID_LIGA =" + id + "; ";
+				+ " from ebdb.ligas where ID_LIGA =" + id + "; ";
 
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
 		List<Liga> ligaArr = new ArrayList<Liga>();
@@ -77,7 +77,7 @@ public class LigasController {
 
 	public List<Liga> myLeagues(@PathVariable long id) {
 		final String QUERY = "select ligas.ID_LIGA, NOMBRE, PASSWORD, REGLAS, UBICACION, NUMERO_JUGADORES"
-				+ " from leaguepong.ligas inner join leaguepong.usuarios_ligas "
+				+ " from ebdb.ligas inner join ebdb.usuarios_ligas "
 				+ "on ligas.ID_LIGA = usuarios_ligas.ID_LIGA where ID_USUARIO =" + id + "; ";
 
 		List<Map<String, Object>> results = jdbcTemplate.queryForList(QUERY);
